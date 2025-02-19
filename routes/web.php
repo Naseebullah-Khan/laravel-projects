@@ -10,26 +10,32 @@ Route::get('/', function (): View {
     // return "Hello, World!";
 });
 
-Route::get("/about", function (): string {
-    return "<h1>This is About Page.</h1>";
-})->name("about");
+# Route Methods
+/**
+ * 1. GET -> get data.
+ * 2. POST -> submit or store data.
+ * 3. PUT -> update whole data.
+ * 4. PATCH -> update a portion of data.
+ * 5. DELETE -> delete the data.
+ * 6. OPTIONS -> not gonna use it.
+ */
 
-Route::get("/posts/{id}/{slug}", function ($id, $slug): string {
-    return "This is Post number {$id} - {$slug}.";
-})->name("posts");
+Route::get("get-data", function (): void {
+    return;
+});
 
-#php artisan route:list => list all routes in laravel project
+Route::post("post-data", function (): void {
+    return;
+});
 
-Route::group(["prefix" => "post", "as" => "post."], function (): void {
-    Route::get("/create", function (): string {
-        return "<h1>Create Post</h1>";
-    })->name("create");
+Route::put("put-data", function (): void {
+    return;
+});
 
-    Route::get("/edit", function (): string {
-        return "<h1>Edit Post</h1>";
-    })->name("edit");
+Route::patch("patch-data", function (): void {
+    return;
+});
 
-    Route::get("/show", function (): string {
-        return "<h1>Show Post</h1>";
-    })->name("show");
+Route::delete("delete-data", function (): void {
+    return;
 });

@@ -10,8 +10,6 @@
 
 <body>
     <h1>This is Home Page.</h1>
-    <a href="{{ route('posts', ['id' => 4, 'slug' => 9]) }}">Posts</a>
-    <a href="{{ route('about') }}">About</a>
 </body>
 
 </html>
