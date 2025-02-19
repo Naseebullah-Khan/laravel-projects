@@ -12,3 +12,7 @@ Route::get('/', function () {
 Route::get("/about", function () {
     return "This is About Page.";
 });
+
+Route::get("/posts/{id}/{slug}", function ($id, $slug): string {
+    return "This is Post number {$id} - {$slug}.";
+});
