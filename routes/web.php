@@ -17,3 +17,19 @@ Route::get("/about", function (): string {
 Route::get("/posts/{id}/{slug}", function ($id, $slug): string {
     return "This is Post number {$id} - {$slug}.";
 })->name("posts");
+
+#php artisan route:list => list all routes in laravel project
+
+Route::group(["prefix" => "post", "as" => "post."], function (): void {
+    Route::get("/create", function (): string {
+        return "<h1>Create Post</h1>";
+    })->name("create");
+
+    Route::get("/edit", function (): string {
+        return "<h1>Edit Post</h1>";
+    })->name("edit");
+
+    Route::get("/show", function (): string {
+        return "<h1>Show Post</h1>";
+    })->name("show");
+});
