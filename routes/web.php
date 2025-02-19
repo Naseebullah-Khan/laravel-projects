@@ -11,9 +11,9 @@ Route::get('/', function (): View {
 });
 
 Route::get("/about", function (): string {
-    return "This is About Page.";
-});
+    return "<h1>This is About Page.</h1>";
+})->name("about");
 
 Route::get("/posts/{id}/{slug}", function ($id, $slug): string {
     return "This is Post number {$id} - {$slug}.";
-});
+})->name("posts");
