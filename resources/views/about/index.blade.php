@@ -9,10 +9,20 @@
 </head>
 
 <body>
-    @php
-        $title = 'This is About Page!';
-    @endphp
     <h1>{{ $title }}</h1>
+    <h2>Foreach Loop</h2>
+    <ul>
+        @foreach ($books as $book)
+            <li>{{ $book }}</li>
+        @endforeach
+    </ul>
+    <hr>
+    <h2>For Loop</h2>
+    <ul>
+        @for ($i = 0; $i < count($books); $i++)
+            <li>{{ $books[$i] }}</li>
+        @endfor
+    </ul>
 </body>
 
 </html>

@@ -6,11 +6,17 @@ use Illuminate\Contracts\View\View;
 # Routes: A route act as a mapping between a specific URL and the cross-bonding code that should be executed in response to the user request.
 
 Route::get('/', function (): View {
-    return view('welcome');
+    $title = "This is Home Page!";
+    return view('welcome', ["title" => $title]);
     // return "Hello, World!";
 });
 
-// php artisan make:view nameOfTheFileOrPath -> create a view
 Route::get("/about", function (): View {
-    return view("about.index");
+    $books = ["Steal like a artist", "Story book", "48 Laws of Power"];
+    return view("about.index", ["title" => "This is About page!", "books" => $books]);
+});
+
+Route::get("/contact", function (): View {
+    $title = "This is Contact page!";
+    return view("contact.index", ["title" => $title]);
 });
