@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>This is Home Page!</h1>
+    <h1>This is Contact Page!</h1>
 </body>
 
 </html>

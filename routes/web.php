@@ -10,7 +10,6 @@ Route::get('/', function (): View {
     // return "Hello, World!";
 });
 
-# Fallback Route: It should be always at the bottom of the route list.
-Route::fallback(function (): string {
-    return "<h1>Oops, we could not find this page!</h1>";
+Route::get("/contact", function (): View {
+    return view("contact.index");
 });
