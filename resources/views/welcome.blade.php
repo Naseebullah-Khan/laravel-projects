@@ -9,7 +9,10 @@
 </head>
 
 <body>
-    <h1>This is Home Page!</h1>
+    @php
+        $title = 'This is Home Page!';
+    @endphp
+    <h1>{{ $title }}</h1>
 </body>
 
 </html>

@@ -9,7 +9,10 @@
 </head>
 
 <body>
-    <h1>This is Contact Page!</h1>
+    @php
+        $title = 'This is Contact Page!';
+    @endphp
+    <h1>{{ $title }}</h1>
 </body>
 
 </html>
