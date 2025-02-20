@@ -10,6 +10,7 @@ Route::get('/', function (): View {
     // return "Hello, World!";
 });
 
-Route::get("/contact", function (): View {
-    return view("contact.index");
+// php artisan make:view nameOfTheFileOrPath -> create a view
+Route::get("/about", function (): View {
+    return view("about.index");
 });
