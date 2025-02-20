@@ -18,3 +18,9 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script>
+        alert("Hello from About Page!")
+    </script>
+@endpush

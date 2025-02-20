@@ -20,3 +20,9 @@
 
     @include('gallery')
 @endsection
+
+@push('scripts')
+    <script>
+        alert("Hello from Home Page!")
+    </script>
+@endpush
