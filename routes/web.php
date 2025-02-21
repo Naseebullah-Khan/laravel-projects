@@ -3,7 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SingleActionController;
-use App\Models\Blog;
+use App\Models\MyBlog;
 use Illuminate\Support\Facades\Route;
 
 # Routes: A route act as a mapping between a specific URL and the cross-bonding code that should be executed in response to the user request.
@@ -24,6 +24,6 @@ Route::get("/contact", SingleActionController::class);
 // Route::resource("/blog", BlogController::class);
 
 Route::get("/blog", function (): string {
-    $blogs = Blog::all(); # SELECT * FROM blogs
+    $blogs = MyBlog::all(); # SELECT * FROM blogs
     dd($blogs);
 });
