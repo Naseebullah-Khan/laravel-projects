@@ -9,9 +9,7 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        DB::table("users")->where("email", "nk0784494104@gmail.com")->update([
-            "email" => "naseebullah_hoshmand@hotmail.com",
-        ]); # You can get Single Data by any column
+        DB::table("users")->where("email", "mahmood@gmail.com")->delete();
         return view("welcome");
     }
 
