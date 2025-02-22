@@ -8,24 +8,27 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index(): Collection
+    public function index(): float
     {
-        # get data from the database using get method (returns data in the form of an collection)
-        // $blogs = DB::table("blogs")->get(["title"]);
-        // return $blogs;
+        # Aggregate Method count
+        // $totalProducts = DB::table("products")->count();
+        // return $totalProducts;
 
-        # get data from the database using select method (returns data in the form of an collection)
-        // $blogs = DB::table("blogs")->select("description")->get();
-        // return $blogs;
+        # Aggregate Method max
+        // $maxProductPrice = DB::table("products")->max("price");
+        // return $maxProductPrice;
 
-        # get data from the database using select method (returns data in the form of an collection and converts it to array)
-        // $blogs = DB::table("blogs")->select("description")->get()->toArray();
-        // dd($blogs);
+        # Aggregate Method min
+        // $minProductPrice = DB::table("products")->min("price");
+        // return $minProductPrice;
 
-        # get data from the database using pluck method (returns data in the form of an array) prefer way
-        # you have to pass a column to key that has unique values
-        $blogs = DB::table("blogs")->pluck("description", "id");
-        return $blogs;
+        # Aggregate Method sum
+        // $sumOfProductsPrice = DB::table("products")->sum("price");
+        // return $sumOfProductsPrice;
+
+        # Aggregate Method avg
+        $averageProductsPrice = DB::table("products")->avg("price");
+        return $averageProductsPrice;
     }
 
     public function about(): View
