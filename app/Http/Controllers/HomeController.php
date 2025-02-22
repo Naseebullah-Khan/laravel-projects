@@ -7,21 +7,19 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index(): View
+    public function index(): object|null
     {
-        DB::table("users")->insert([
-            [
-                "name" => "Mahmood",
-                "email" => "mahmood@gmail.com",
-                "password" => "123456789",
-            ],
-            [
-                "name" => "Zafar",
-                "email" => "zafar@gmail.com",
-                "password" => "12345678",
-            ]
-        ]);
-        return view("welcome");
+        $users = DB::table("users")->get(); # All Data
+        // return $users;
+
+        $user1 = DB::table("users")->find(1, ["name", "email"]); # You can only get single data by id
+        // return $user1;
+        # or
+        $user2 = DB::table("users")->where("email", "nk0784494104@gmail.com")->first(); # You can get Single Data by any column
+        // return $user2;
+
+        $users1 = DB::table("users")->where("id", ">=", 3)->get();
+        return $users1;
     }
 
     public function about(): View
