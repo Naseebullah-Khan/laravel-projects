@@ -10,8 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::table('blogs', function (Blueprint $table) {
-            $table->boolean("status")->default(false)->after("description");
+        Schema::table('products', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -20,8 +20,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::table('blogs', function (Blueprint $table) {
-            $table->dropColumn("status");
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropSoftDeletes();
         });
     }
 };
