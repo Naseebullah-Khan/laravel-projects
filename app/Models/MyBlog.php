@@ -9,4 +9,9 @@ class MyBlog extends Model
 {
     use HasFactory;
     protected $table = "blogs";
+
+    public function scopeActiveBlogs($query): mixed
+    {
+        return $query->where("status", 1);
+    }
 }
