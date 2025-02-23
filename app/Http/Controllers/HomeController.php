@@ -4,22 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Collection;
 
 class HomeController extends Controller
 {
-    public function index(): Collection
+    public function index()
     {
-        // $product = Product::findOrFail(4);
-        // $product->delete();
+        // $product = Product::findOrFail(3)->forceDelete(); # permanently delete the product
+        // $product = Product::findOrFail(3)->delete(); # soft delete the product
 
-        # if you want to retrieve all products including the deleted ones, you should chain withTrashed method.
-        // $products = Product::withTrashed()->get();
+        // $product = Product::withTrashed()->findOrFail(3)->restore(); # restore the soft deleted product
+        $product = Product::withTrashed()->findOrFail(3)->forceDelete(); # permanently delete the soft deleted product
 
-        # if you want to retrieve only the deleted products, you should chain onlyTrashed method.
-        $products = Product::onlyTrashed()->get();
-
-        return $products;
+        return $product;
     }
 
     public function about(): View
