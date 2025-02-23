@@ -2,33 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index(): float
+    public function index(): View
     {
-        # Aggregate Method count
-        // $totalProducts = DB::table("products")->count();
-        // return $totalProducts;
+        $user = new User();
+        $user->name = "Farhad";
+        $user->email = "farhad@gmail.com";
+        $user->password = "12345678";
+        $user->save();
 
-        # Aggregate Method max
-        // $maxProductPrice = DB::table("products")->max("price");
-        // return $maxProductPrice;
-
-        # Aggregate Method min
-        // $minProductPrice = DB::table("products")->min("price");
-        // return $minProductPrice;
-
-        # Aggregate Method sum
-        // $sumOfProductsPrice = DB::table("products")->sum("price");
-        // return $sumOfProductsPrice;
-
-        # Aggregate Method avg
-        $averageProductsPrice = DB::table("products")->avg("price");
-        return $averageProductsPrice;
+        return view("welcome");
     }
 
     public function about(): View
