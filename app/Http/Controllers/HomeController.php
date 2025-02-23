@@ -9,11 +9,13 @@ class HomeController extends Controller
 {
     public function index(): View
     {
-        $user = User::where("email", "mohammad@gmail.com")->first();
-        $user->name = "Monir";
-        $user->email = "monir@gmail.com";
-        $user->save();
+        # this way when the user does not exits it will throw an error
+        // $user = User::where("email", "monir@gmail.com")->first();
+        // $user->delete();
 
+        # this way when the user does not exits it will not throw an error
+        $user = User::findOrFail(4);
+        $user->delete();
 
         return view("welcome");
     }
