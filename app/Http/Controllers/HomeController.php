@@ -7,15 +7,9 @@ use Illuminate\Contracts\View\View;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(): View
     {
-        // $product = Product::findOrFail(3)->forceDelete(); # permanently delete the product
-        // $product = Product::findOrFail(3)->delete(); # soft delete the product
-
-        // $product = Product::withTrashed()->findOrFail(3)->restore(); # restore the soft deleted product
-        $product = Product::withTrashed()->findOrFail(3)->forceDelete(); # permanently delete the soft deleted product
-
-        return $product;
+        return view("welcome");
     }
 
     public function about(): View

@@ -1,29 +1,12 @@
 <?php
 
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SingleActionController;
-use App\Models\MyBlog;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\HomeController;
 
 # Routes: A route act as a mapping between a specific URL and the cross-bonding code that should be executed in response to the user request.
 
 Route::get('/', [HomeController::class, "index"]);
 
-Route::get("/about", [HomeController::class, "about"]);
-
-Route::get("/contact", SingleActionController::class);
-
-# Blog
-# Create
-# Read
-# Update
-# Delete
-# (CRUD)
-
-// Route::resource("/blog", BlogController::class);
-
-Route::get("/blog", function (): string {
-    $blogs = MyBlog::all(); # SELECT * FROM blogs
-    dd($blogs);
-});
+Route::get("/contact", [ContactController::class, "index"]);
