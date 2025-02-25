@@ -21,28 +21,31 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" id="name" name="name"
+                                    value="{{ old('name') }}">
                                 {{-- @error('name')
                                     <p class="mt-2 text-danger">{{ $message }}</p>
                                 @enderror --}}
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="email" class="form-control" id="email" name="email"
+                                    value="{{ old('email') }}">
                                 {{-- @error('email')
                                     <p class="mt-2 text-danger">{{ $message }}</p>
                                 @enderror --}}
                             </div>
                             <div class="mb-3">
                                 <label for="subject" class="form-label">Subject</label>
-                                <input type="text" class="form-control" id="subject" name="subject">
+                                <input type="text" class="form-control" id="subject" name="subject"
+                                    value="{{ old('subject') }}">
                                 {{-- @error('subject')
                                     <p class="mt-2 text-danger">{{ $message }}</p>
                                 @enderror --}}
                             </div>
                             <div class="mb-3">
                                 <label for="message" class="form-label">Message</label>
-                                <textarea id="message" name="message" class="form-control"></textarea>
+                                <textarea id="message" name="message" class="form-control">{{ old('message') }}</textarea>
                                 {{-- @error('message')
                                     <p class="mt-2 text-danger">{{ $message }}</p>
                                 @enderror --}}
