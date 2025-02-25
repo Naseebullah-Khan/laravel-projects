@@ -24,6 +24,8 @@ class ContactStoreRequest extends FormRequest
         return [
             "name" => ["required", "max:20", "min:2"],
             "email" => ["required", "email"],
+            "subject" => ["nullable", "max:255"],
+            "message" => ["required", "max:5000"],
         ];
     }
 
@@ -33,7 +35,10 @@ class ContactStoreRequest extends FormRequest
             "name.required" => "Hey please fill the name field",
             "name.max" => "The max length of name have to be 20",
             "name.min" => "The min length of name have to be 2",
-            "email.required" => "Hey email is required"
+            "email.required" => "Hey email is required",
+            "subject.max" => "The max length of subject have to be 255",
+            "message.required" => "Hey message is required",
+            "message.max" => "The max length of message have to be 5000",
         ];
     }
 }
