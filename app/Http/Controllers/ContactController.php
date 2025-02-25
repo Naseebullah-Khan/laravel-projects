@@ -11,4 +11,9 @@ class ContactController extends Controller
     {
         return view("contact.index");
     }
+
+    public function store()
+    {
+        dd("working");
+    }
 }
