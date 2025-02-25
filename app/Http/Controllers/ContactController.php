@@ -15,9 +15,9 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
-        // dd(request()->all()); # using request() helper function to get the request data
-        // dd($request->all()); # using Request class to get the request data and this is the recommended way
-        // dd($request->name); # getting the name field from the request data
-        dd($request->input("email")); # getting the name field from the request data
+        $request->validate([
+            "name" => ["required", "max:20", "min:2"],
+            "email" => ["required", "email"],
+        ]);
     }
 }
