@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FileUploadController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
@@ -11,3 +12,5 @@ Route::get('/', [HomeController::class, "index"]);
 
 Route::get("/contact", [ContactController::class, "index"])->name("contact.index");
 Route::post("/contact", [ContactController::class, "store"])->name("contact.store");
+
+Route::get("file-upload", [FileUploadController::class, "index"])->name("file.upload");
