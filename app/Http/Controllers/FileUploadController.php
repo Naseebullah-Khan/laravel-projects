@@ -6,6 +6,8 @@ use App\Models\File;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Storage;
+use Str;
+use \Illuminate\Http\RedirectResponse;
 
 class FileUploadController extends Controller
 {
@@ -15,13 +17,13 @@ class FileUploadController extends Controller
         return view("File.index", ["files" => $files]);
     }
 
-    public function store(Request $request): void
+    public function store(Request $request): RedirectResponse
     {
         # Validation
 
         $request->validate([
             // "file" => ["required", "image"]
-            "file" => ["required", "file", "mimes:zip,pdf,csv", "max:5000"]
+            "file" => ["required", "image"]
         ]);
 
         $file = $request->file("file");
@@ -35,7 +37,10 @@ class FileUploadController extends Controller
         $fileStore->file_path = "/uploads/" . $path;
         $fileStore->save();
 
-        dd("stored");
+        // return redirect()->back();
+        // return redirect()->route("home");
+        // return redirect()->away("https://www.google.com/");
+        return redirect("/contact");
     }
 
     public function download()
