@@ -11,6 +11,11 @@
                             <div class="mb-3">
                                 <label for="file" class="form-label">File</label>
                                 <input type="file" class="form-control" id="file" name="file">
+                                @error('file')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
