@@ -19,6 +19,7 @@ class FileUploadController extends Controller
     {
         # Two ways to store files
         # in order to access the files in storage/public folder you have to link the root public folder to storage/public folder by using this command php artisan storage:link
+        # but there is a drawback for this because shared hosting server does not allow this command to be run. so by using this command php artisan storage:unlink we can unlink the root public folder from storage/public folder
 
         # 1. Storage Facade (Longer Version)
         #    disk() -> where to store file
@@ -27,10 +28,13 @@ class FileUploadController extends Controller
 
         # 2. Short Version
         // $file = $request->file("file")->store("/", "local"); # this should be stored locally and can not be accessed by public
-        $file = $request->file("file")->store("/", "public"); # this should be stored locally and can be accessed by public if we link it with root public folder of laravel project
+        $file = $request->file("file")->store("/", "custom_disk_public"); # this should be stored locally and can be accessed by public if we link it with root public folder of laravel project
 
         $fileStore = new File();
-        $fileStore->file_path = $file;
+        # if you want to store file name
+        // $fileStore->file_path = $file;
+        # if you want to store file path
+        $fileStore->file_path = "/uploads/" . $file;
         $fileStore->save();
 
         dd("stored");
@@ -39,6 +43,6 @@ class FileUploadController extends Controller
     public function download()
     {
         # If you want to access the private folder files then this is the only approach.
-        return Storage::disk("local")->download("uCq6oEbD6CLipde1NOb1TIi4tujg6a8m0MJhOzf4.jpg");
+        return Storage::disk("local")->download("6IpgElRvRVoFAmrY3TbUl4dLTR3gSKjUKVVJACcp.jpg");
     }
 }

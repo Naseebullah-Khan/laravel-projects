@@ -19,7 +19,12 @@
                 @foreach ($files as $file)
                     <div class="card mt-5 mb-5">
                         <div class="card-body">
-                            <img src="storage/{{ $file->file_path }}" style="width: 100px;" alt="file">
+                            {{-- this is not recommended --}}
+                            {{-- <img src="uploads/{{ $file->file_path }}" style="width: 100px;" alt="file"> --}}
+                            {{-- if you store the only file name then use this approach --}}
+                            {{-- <img style="width:655px;" src="{{ asset('uploads') . '/' . $file->file_path }}" alt="image"> --}}
+                            {{-- if you store the path to the file then use this approach --}}
+                            <img style="width:655px;" src="{{ asset($file->file_path) }}" alt="image">
                         </div>
                     </div>
                 @endforeach
