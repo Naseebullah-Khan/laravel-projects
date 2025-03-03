@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CustomerStoreRequest;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 
@@ -26,9 +27,9 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CustomerStoreRequest $request)
     {
-        //
+        dd($request->all());
     }
 
     /**
