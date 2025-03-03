@@ -31,6 +31,17 @@ class CustomerController extends Controller
     public function store(CustomerStoreRequest $request)
     {
         $customer = new Customer();
+        # in order to save the image/file first you have to check if image/file is uploaded or not because we made the image/file input nullable
+        if ($request->hasFile("image")) {
+            # select the image/file
+            $image = $request->file("image");
+            # get image/file name
+            $imageName = $image->store("/", "custom_public");
+            # now hardcode a path for image/file
+            $imagePath = "/uploads/" . $imageName;
+            # save image/file path in database
+            $customer->image = $imagePath;
+        }
         $customer->first_name = $request->first_name;
         $customer->last_name = $request->last_name;
         $customer->email = $request->email;
