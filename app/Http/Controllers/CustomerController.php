@@ -6,6 +6,7 @@ use App\Http\Requests\CustomerStoreRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\File;
 
 class CustomerController extends Controller
 {
@@ -68,17 +69,39 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        //
+        $customer = Customer::findOrFail($id);
+        return view("customer.edit", compact("customer"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CustomerStoreRequest $request, string $id)
     {
-        //
+        $customer = Customer::findOrFail($id);
+
+        if ($request->hasFile("image")) {
+            $image = $request->file("image");
+            $imageName = $image->store("/", "custom_public");
+            $imagePath = "/uploads/" . $imageName;
+            if ($customer->image == "/default-images/avatar.jpg") {
+            } else {
+                File::delete(public_path($customer->image));
+            }
+            $customer->image = $imagePath;
+        }
+
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
+        $customer->email = $request->email;
+        $customer->phone = $request->phone;
+        $customer->bank_account_number = $request->bank_account_number;
+        $customer->about = $request->about;
+        $customer->save();
+
+        return redirect()->route("customer.index");
     }
 
     /**
