@@ -59,8 +59,8 @@
                                     <td>
                                         <a href="{{ route('customer.edit', ['id' => $customer->id]) }}"
                                             style="color: #2c2c2c;" class="ms-1 me-1"><i class="far fa-edit"></i></a>
-                                        <a href="/customer-details.html" style="color: #2c2c2c;" class="ms-1 me-1"><i
-                                                class="far fa-eye"></i></a>
+                                        <a href="{{ route('customer.show', ['id' => $customer->id]) }}"
+                                            style="color: #2c2c2c;" class="ms-1 me-1"><i class="far fa-eye"></i></a>
                                         <a href="" style="color: #2c2c2c;" class="ms-1 me-1"><i
                                                 class="fas fa-trash-alt"></i></a>
                                     </td>
