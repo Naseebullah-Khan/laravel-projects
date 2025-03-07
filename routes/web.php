@@ -3,6 +3,9 @@
 use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 
+Route::get("/trash", [CustomerController::class, "showTrashedData"])->name("customer.showTrashedData");
+Route::post("/restore/{id}", [CustomerController::class, "restore"])->name("customer.restore");
+Route::delete("/forceDelete/{id}", [CustomerController::class, "forceDestroy"])->name("customer.forceDestroy");
 Route::get('/', [CustomerController::class, "index"])->name("customer.index");
 Route::get("/create", [CustomerController::class, "create"])->name("customer.create");
 Route::post("/", [CustomerController::class, "store"])->name("customer.store");

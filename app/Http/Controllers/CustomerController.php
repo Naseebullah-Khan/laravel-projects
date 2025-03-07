@@ -117,14 +117,65 @@ class CustomerController extends Controller
     {
         $customer = Customer::findOrFail($id);
 
-        if ($customer->image == "/default-images/avatar.jpg") {
-        } else {
-            File::delete(public_path($customer->image));
-        }
+        # we have to comment out this part because of soft delete feature
+
+        // if ($customer->image == "/default-images/avatar.jpg") {
+        // } else {
+        //     File::delete(public_path($customer->image));
+        // }
 
         $customer->delete();
 
         return redirect()->route("customer.index");
 
+    }
+
+    /**
+     * Display a listing of the trashed resource.
+     */
+    public function showTrashedData(Request $request): View
+    {
+        $customers = Customer::onlyTrashed()
+            ->when($request->has("search"), function ($q) use ($request) {
+                return $q->where(function ($subQuery) use ($request) {
+                    $subQuery->where("first_name", "LIKE", "%$request->search%")
+                        ->orWhere("last_name", "LIKE", "%$request->search%")
+                        ->orWhere("email", "LIKE", "%$request->search%")
+                        ->orWhere("phone", "LIKE", "%$request->search%");
+                });
+            })
+            ->orderBy("id", $request->has("order") && $request->order == "asc" ? "ASC" : "DESC")
+            ->get();
+
+
+        return view("customer.trash", compact("customers"));
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     */
+    public function restore(string $id)
+    {
+        $customer = Customer::onlyTrashed()->findOrFail($id);
+        $customer->restore();
+
+        return redirect()->back();
+    }
+
+    /**
+     * Force delete the specified resource from storage.
+     */
+    public function forceDestroy(string $id)
+    {
+        $customer = Customer::onlyTrashed()->findOrFail($id);
+
+        if ($customer->image == "/default-images/avatar.jpg") {
+        } else {
+            File::delete(public_path($customer->image));
+        }
+
+        $customer->forceDelete();
+
+        return redirect()->back();
     }
 }
