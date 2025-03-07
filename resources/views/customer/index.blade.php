@@ -24,13 +24,15 @@
                             </form>
                         </div>
                         <div class="col-md-2">
-
-                            <div class="input-group mb-3">
-                                <select class="form-select" name="" id="">
-                                    <option value="">Newest to Old</option>
-                                    <option value="">Old to Newest</option>
-                                </select>
-                            </div>
+                            <form action="{{ route('customer.index') }}" method="GET" id="form-order">
+                                <div class="input-group mb-3">
+                                    <select class="form-select" name="order" id="order"
+                                        onchange="document.getElementById('form-order').submit()">
+                                        <option @selected(request()->order == 'desc') value="desc">Newest to Oldest</option>
+                                        <option @selected(request()->order == 'asc') value="asc">Oldest to Newest</option>
+                                    </select>
+                                </div>
+                            </form>
                         </div>
                     </div>
 
@@ -63,7 +65,7 @@
                                         <a href="{{ route('customer.show', ['id' => $customer->id]) }}"
                                             style="color: #2c2c2c;" class="ms-1 me-1"><i class="far fa-eye"></i></a>
                                         <a href="javascript:;"
-                                            onclick="if(confirm('Are you sure you want to delete this customer?')) { document.getElementById('form-{{ $customer->id }}').submit(); }"
+                                            onclick="if(confirm('Are you sure you want to delete {{ $customer->first_name }}')) { document.getElementById('form-{{ $customer->id }}').submit(); }"
                                             style="color: #2c2c2c;" class="ms-1 me-1"><i class="fas fa-trash-alt"></i></a>
                                         <form id="form-{{ $customer->id }}"
                                             action="{{ route('customer.destroy', ['id' => $customer->id]) }}"
