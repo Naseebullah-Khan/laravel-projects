@@ -8,10 +8,24 @@ Route::get('/', function () {
 });
 
 Route::get("/join", function () {
+    # Inner Join:-> you can only make join between tables if value exits in all of the tables
+    // $usersWithOrders = DB::table("users")
+    //     ->join("orders", "users.id", "=", "orders.user_id")
+    //     // ->select("users.*", "orders.*") # All columns of both tables
+    //     ->select("users.email", "orders.product_name") # only email column from user table and product_name column from orders table
+    //     ->get();
+
+    /**
+     * Outer Join:-> we have three kind of outer join
+     *      1. Left Join
+     *      2. Right Join
+     *      3. Full Join
+     */
+
+    # 1. Left Join:-> it will fetch all of the data from first table but from the second table it will only fetched data that has a connection with the first table data
     $usersWithOrders = DB::table("users")
-        ->join("orders", "users.id", "=", "orders.user_id")
-        // ->select("users.*", "orders.*") # All columns of both tables
-        ->select("users.email", "orders.product_name") # only email column from user table and product_name column from orders table
+        ->leftJoin("orders", "users.id", "=", "orders.user_id")
+        ->select("users.name", "orders.product_name")
         ->get();
 
     dd($usersWithOrders);
