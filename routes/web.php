@@ -29,10 +29,22 @@ Route::get("/join", function () {
     //     ->get();
 
     # 2. Right Join:-> it will fetch all of the data from second table but from the first table it will only fetched data that has a connection with the second table data
-    $ordersWithUsers = DB::table("orders")
-        ->leftJoin("users", "users.id", "=", "orders.user_id")
-        ->select("orders.product_name", "users.name")
-        ->get();
+    // $ordersWithUsers = DB::table("orders")
+    //     ->leftJoin("users", "users.id", "=", "orders.user_id")
+    //     ->select("orders.product_name", "users.name")
+    //     ->get();
 
-    dd($ordersWithUsers);
+    # 3. Full Join:-> it will fetched all data from both of the table
+    ## unionAll()-> get all data even if data is duplicate.
+    ## union()-> get all data without duplicate
+    $usersWithOrdersAndOrdersWithUsers = DB::table("users")
+        ->leftJoin("orders", "users.id", "=", "orders.user_id")
+        ->select("users.name", "orders.product_name")
+        ->unionAll(
+            DB::table("users")
+                ->rightJoin("orders", "users.id", "=", "orders.user_id")
+                ->select("users.name", "orders.product_name")
+        )->get();
+
+    dd($usersWithOrdersAndOrdersWithUsers);
 });
