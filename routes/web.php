@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Address;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Contracts\View\View;
@@ -11,6 +12,7 @@ Route::get('/', function (): View {
 Route::get("/users", function (): View {
 
     $users = User::all();
+    $addresses = Address::all();
 
-    return view("test", compact("users"));
+    return view("test", compact("users", "addresses"));
 });

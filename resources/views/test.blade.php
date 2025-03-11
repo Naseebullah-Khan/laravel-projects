@@ -9,12 +9,23 @@
 </head>
 
 <body>
-    <div>
+    {{-- <div>
         @foreach ($users as $user)
             @if ($user->address)
                 <div>
                     <h4>{{ $user->name }}</h4>
                     <p>Address: {{ $user->address->country }}, {{ $user->address->city }}</p>
+                </div>
+                <hr>
+            @endif
+        @endforeach
+    </div> --}}
+    <div>
+        @foreach ($addresses as $address)
+            @if ($address->user)
+                <div>
+                    <h4>{{ $address->country }}, {{ $address->city }}</h4>
+                    <p>{{ $address->user->name }} is living in this address.</p>
                 </div>
                 <hr>
             @endif
