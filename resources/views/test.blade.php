@@ -9,18 +9,23 @@
 </head>
 
 <body>
-    {{-- <div>
+    <div>
         @foreach ($users as $user)
-            @if ($user->address)
+            @if ($user->address || $user->posts->count() > 0)
                 <div>
                     <h4>{{ $user->name }}</h4>
-                    <p>Address: {{ $user->address->country }}, {{ $user->address->city }}</p>
+                    @if ($user->posts->count() > 0)
+                        <p>Posts Count: {{ $user->posts->count() }}</p>
+                    @endif
+                    @foreach ($user->addresses as $address)
+                        <p>Address{{ $loop->iteration }}: {{ $address->country }}, {{ $address->city }}</p>
+                    @endforeach
                 </div>
                 <hr>
             @endif
         @endforeach
-    </div> --}}
-    <div>
+    </div>
+    {{-- <div>
         @foreach ($addresses as $address)
             @if ($address->user)
                 <div>
@@ -30,7 +35,7 @@
                 <hr>
             @endif
         @endforeach
-    </div>
+    </div> --}}
 </body>
 
 </html>
