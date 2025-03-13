@@ -2,6 +2,7 @@
 
 use App\Models\Address;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Contracts\View\View;
@@ -42,6 +43,40 @@ Route::get("/posts", function (): View {
     //     ],
     // ]);
 
+    // Tag::insert([
+    //     [
+    //         "name" => ".NET"
+    //     ],
+    //     [
+    //         "name" => "Django"
+    //     ],
+    //     [
+    //         "name" => "Spring Boot"
+    //     ],
+    //     [
+    //         "name" => "C Framework"
+    //     ],
+    //     [
+    //         "name" => "C# Framework"
+    //     ],
+    // ]);
+
+    # add a tag to post using attach method
+    // $post = Post::find(5);
+    // $tag = Tag::find(1);
+    // $post->tags()->attach($tag);
+    # remove a tag from post using detach method
+    // $post->tags()->detach($tag);
+    # remove all tags and add new one or ones using sync method
+    // $post->tags()->sync($tag);
+
     $posts = Post::all();
     return view("posts", compact("posts"));
+});
+
+Route::get("/tags", function (): View {
+
+    $tags = Tag::all();
+
+    return view("tags", compact("tags"));
 });

@@ -5,19 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Posts</title>
+    <title>Tags</title>
 </head>
 
 <body>
     <div>
-        @foreach ($posts as $post)
+        @foreach ($tags as $tag)
             <div>
-                <h4>{{ $post->title }}</h4>
-                <p>Author: {{ $post->user->name }}</p>
-                <p>Tags: </p>
+                <h4>{{ $tag->name }}</h4>
+                <p>Posts: </p>
                 <ul>
-                    @foreach ($post->tags as $tag)
-                        <li>{{ $tag->name }}</li>
+                    @foreach ($tag->posts as $post)
+                        <li>{{ $post->title }}</li>
                     @endforeach
                 </ul>
             </div>
