@@ -100,3 +100,16 @@ Route::get("/location", function (): View {
 
     return view("location", compact("country"));
 });
+
+Route::get("/image", function () {
+
+    // $user = User::findOrFail(10);
+    // $user->image()->create(["path" => "/uploads/user_image.jpg"]);
+
+    // return $user->image;
+
+    $post = Post::findOrFail(4);
+    // $post->image()->create(["path" => "/uploads/post_image.jpg"]);
+
+    return $post->image;
+});
