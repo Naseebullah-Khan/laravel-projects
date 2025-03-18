@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MiddlewareTestingController;
 use App\Models\Address;
 use App\Models\City;
 use App\Models\Country;
@@ -113,3 +114,6 @@ Route::get("/image", function () {
 
     return $post->image;
 });
+
+Route::get("/middlewareTesting", [MiddlewareTestingController::class, "index"])->name("middlewareTesting.index");
+Route::post("/middlewareTesting", [MiddlewareTestingController::class, "store"])->name("middlewareTesting.store");
