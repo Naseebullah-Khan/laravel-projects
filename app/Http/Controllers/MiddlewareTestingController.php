@@ -9,7 +9,7 @@ class MiddlewareTestingController extends Controller
 {
     public function index(): View
     {
-        return view("middleware.form");
+        return view("middlewareView.form");
     }
 
     public function store(Request $request): array
