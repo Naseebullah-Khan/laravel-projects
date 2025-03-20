@@ -41,6 +41,13 @@ return Application::configure(basePath: dirname(__DIR__))
         // //     //     // AnotherMiddleware
         // // ]);
     
+        # If you want to add alias or name to middleware then you do it like this
+        $middleware->alias([
+            "checkRole" => CheckRoleMiddleware::class,
+            // "middlewareName"=>AnotherMiddleware,
+            // "middlewareName"=>AnotherMiddleware,
+            // "middlewareName" => AnotherMiddleware,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

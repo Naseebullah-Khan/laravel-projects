@@ -116,4 +116,5 @@ Route::get("/image", function () {
 });
 
 Route::get("/middlewareTesting", [MiddlewareTestingController::class, "index"])->name("middlewareTesting.index");
-Route::post("/middlewareTesting", [MiddlewareTestingController::class, "store"])->name("middlewareTesting.store");
+Route::post("/middlewareTesting", [MiddlewareTestingController::class, "store"])->name("middlewareTesting.store")
+    ->middleware(["checkRole"]);
