@@ -12,11 +12,35 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->append(CheckRoleMiddleware::class);
-        // $middleware->append(AnotherMiddleware);
-        // $middleware->append(AnotherMiddleware);
-        // $middleware->append(AnotherMiddleware);
-        // you can add as many as you want
+        // $middleware->append(CheckRoleMiddleware::class);
+        // // $middleware->append(AnotherMiddleware);
+        // // $middleware->append(AnotherMiddleware);
+        // // $middleware->append(AnotherMiddleware);
+        // // you can add as many as you want
+    
+        # If you want to group middlewares in to one middleware you do it like this
+        // $middleware->appendToGroup("test-group", [
+        //     CheckRoleMiddleware::class,
+        //     // AnotherMiddleware
+        //     // AnotherMiddleware
+        //     // AnotherMiddleware
+        // ]);
+    
+        # If you want to add a middleware or middlewares to default middleware of laravel like web or api middleware then you do it like this
+        // $middleware->web(append: [
+        //     CheckRoleMiddleware::class,
+        //     //     // AnotherMiddleware
+        //     //     // AnotherMiddleware
+        //     //     // AnotherMiddleware
+        // ]);
+        // // --------------------------------------------
+        // // $middleware->api(append: [
+        // //     CheckRoleMiddleware::class,
+        // //     //     // AnotherMiddleware
+        // //     //     // AnotherMiddleware
+        // //     //     // AnotherMiddleware
+        // // ]);
+    
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
