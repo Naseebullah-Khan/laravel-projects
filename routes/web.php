@@ -115,6 +115,15 @@ Route::get("/image", function () {
     return $post->image;
 });
 
-Route::get("/middlewareTesting", [MiddlewareTestingController::class, "index"])->name("middlewareTesting.index");
-Route::post("/middlewareTesting", [MiddlewareTestingController::class, "store"])->name("middlewareTesting.store")
-    ->middleware(["checkRole"]);
+// Route::get("/middlewareTesting", [MiddlewareTestingController::class, "index"])->name("middlewareTesting.index");
+// Route::post("/middlewareTesting", [MiddlewareTestingController::class, "store"])->name("middlewareTesting.store")
+//     ->middleware(["checkRole"]);
+
+# If you want to pass a parameter to the middleware, it is recommended to first alias to the middleware
+Route::get("/user/dashboard", function () {
+    dd("User Dashboard");
+})->middleware("checkRole:user"); // if you want to pass more than one parameters then you are gonna do it like this: "checkRole:admin,anotherParameter,anotherParameter"
+
+Route::get("/admin/dashboard", function () {
+    dd("Admin Dashboard");
+})->middleware("checkRole:admin"); // if you want to pass more than one parameters then you are gonna do it like this: "checkRole:admin,anotherParameter,anotherParameter"
