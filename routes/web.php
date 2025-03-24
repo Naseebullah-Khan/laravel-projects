@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -12,7 +13,16 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get("/user/dashboard", function () {
-    dd("User Dashboard");
+    # There is two ways to get the authenticated user
+    # 1. Using the auth() helper function:- we use this mostly in blade files. you can also use this in other places as well.
+    # 2. Using the auth facade:- we use this mostly in controllers. you can also use this in blade files as well.
+    // if (Auth::check()) {
+    //     $user = Auth::user();
+    //     dd($user->name);
+    // } else {
+    //     dd("User is not authenticated");
+    // }
+    return view("user.dashboard");
 })->name("user.dashboard");
 
 Route::middleware('auth')->group(function () {
