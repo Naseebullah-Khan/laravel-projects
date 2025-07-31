@@ -8,9 +8,11 @@ class ResponseController extends Controller
 {
     public function index()
     {
-        return redirect()->action([ResponseController::class, "create"], ["id" => 4]);
-        // return redirect()->away('https://www.google.com'); // if user wants to go outside of application
-        // return redirect()->back();
+        // return response()->json(["name" => "Nasebullah Khan Hohmand", "position" => "SE"]); // Json format
+        // or
+        // return ["name" => "Nasebullah Khan Hohmand", "position" => "SE"]; // Json format
+        // return response()->download(public_path('uploads/Screenshot 2025-06-02 161216.png')); // Download file
+        return response()->file(public_path('uploads/Screenshot 2025-06-02 161216.png')); // view file
     }
 
     public function create()
