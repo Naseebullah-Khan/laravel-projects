@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -34,5 +35,23 @@ Route::middleware('auth')->group(function () {
 
 // Post Route
 Route::resource("/post", PostController::class)->middleware("auth");
+
+// Route::get("/response-one", function () {
+//     // return redirect("response-two");
+//     // return redirect()->route("response.two");
+//     return to_route("response.two", ["name" => "Naseebullah Khan Hoshmand"]);
+// })->name("response.one");
+
+// // Route::get("/response-two/{name}", function ($name) {
+// Route::get("/response-two", function () {
+//     // dd($name);
+//     // dd(request()); // if you have parameter in path then you don't have access to that parameter in request method
+//     dd(request()->query()["name"]);
+//     return "Response Two";
+// })->name("response.two");
+
+Route::get("/response", [ResponseController::class, "index"]);
+Route::get("/response/create", [ResponseController::class, "create"]);
+
 
 require __DIR__ . '/auth.php';
