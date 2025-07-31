@@ -52,7 +52,14 @@ class PostController extends Controller
         //     abort(403);
         // }
         // or
-        Gate::authorize("edit-posts", $post);
+        // Gate::authorize("edit-posts", $post);
+
+        // for Policy
+        // if (!Gate::allows("update", $post)) {
+        //     abort(403);
+        // }
+        // or
+        Gate::authorize("update", $post);
 
         return view("post.edit", compact("post"));
     }
