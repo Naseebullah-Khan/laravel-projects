@@ -3,8 +3,11 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResponseController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\view\View;
 
 Route::get('/', function () {
     return view('welcome');
@@ -52,6 +55,20 @@ Route::resource("/post", PostController::class)->middleware("auth");
 
 Route::get("/response", [ResponseController::class, "index"]);
 Route::get("/response/create", [ResponseController::class, "create"]);
+
+Route::get("/send-email", function (): View {
+    return view("send-email");
+});
+
+Route::post("/send-email", function (Request $request): never {
+    Mail::raw($request->message, function ($mail) use ($request): void {
+        $mail
+            ->to($request->email)
+            ->subject("Test Email from Laravel")
+            ->from("nk@gmail.com");
+    });
+    dd("Email sent successfully!");
+})->name("send.email");
 
 
 require __DIR__ . '/auth.php';
