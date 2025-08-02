@@ -3,6 +3,7 @@
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResponseController;
+use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -61,12 +62,23 @@ Route::get("/send-email", function (): View {
 });
 
 Route::post("/send-email", function (Request $request): never {
-    Mail::raw($request->message, function ($mail) use ($request): void {
-        $mail
-            ->to($request->email)
-            ->subject("Test Email from Laravel")
-            ->from("nk@gmail.com");
-    });
+    // Mail::raw($request->message, function ($mail) use ($request): void {
+    //     $mail
+    //         ->to($request->email)
+    //         ->subject("Test Email from Laravel")
+    //         ->from("nk@gmail.com");
+    // });
+    // dd("Email sent successfully!");
+
+    // Recommended way to send email
+
+    $mailContent = [
+        "to" => $request->email,
+        "message" => $request->message,
+        "subject" => "test email from laravel",
+        "from" => "nk@laravel.com",
+    ];
+    Mail::to($mailContent["to"])->send(new SendMail($mailContent));
     dd("Email sent successfully!");
 })->name("send.email");
 
