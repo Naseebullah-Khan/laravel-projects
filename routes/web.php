@@ -78,7 +78,7 @@ Route::post("/send-email", function (Request $request): never {
         "subject" => "test email from laravel",
         "from" => "nk@laravel.com",
     ];
-    Mail::to($mailContent["to"])->send(new SendMail($mailContent));
+    Mail::to($mailContent["to"])->queue(new SendMail($mailContent));
     dd("Email sent successfully!");
 })->name("send.email");
 
