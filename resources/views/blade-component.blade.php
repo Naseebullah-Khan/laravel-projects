@@ -12,9 +12,15 @@
 
     <h1>Hello World!</h1>
 
-    <x-alert /><x-alert /><x-alert /><x-alert />
-    <x-form.input /><x-form.input /><x-form.input /><x-form.input />
-    <x-form.form-select /><x-form.form-select /><x-form.form-select /><x-form.form-select />
+    {{-- <x-alert style="color:red; border:1px solid green;" text="This is a message!" /> --}}
+
+    @php
+        $languages = ["PHP", "JavaScript", "Python", "C", "C++", "Dart"];
+    @endphp
+
+    @foreach ($languages as $language)
+        <x-alert :text="$language" />
+    @endforeach
 
 </body>
 

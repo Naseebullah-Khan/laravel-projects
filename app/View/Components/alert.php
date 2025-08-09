@@ -8,12 +8,15 @@ use Illuminate\View\Component;
 
 class alert extends Component
 {
+    public string|null $text;
+    public string|null $style;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(string $text = null, string $style = null)
     {
-        //
+        $this->text = $text;
+        $this->style = $style;
     }
 
     /**
@@ -23,7 +26,7 @@ class alert extends Component
     {
         return <<<'blade'
 <div>
-    <h1 style="color:red">This is Alert!</h1>
+    <h1 style="border: 1px solid green; padding: 20px; width: 150px">{{ $text }}</h1>
 </div>
 blade;
     }
