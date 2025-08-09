@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\form;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class alert extends Component
+class FormSelect extends Component
 {
     /**
      * Create a new component instance.
@@ -21,10 +21,6 @@ class alert extends Component
      */
     public function render(): View|Closure|string
     {
-        return <<<'blade'
-<div>
-    <h1 style="color:red">This is Alert!</h1>
-</div>
-blade;
+        return view('components.form.form-select');
     }
 }
