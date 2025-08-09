@@ -14,13 +14,16 @@
 
     {{-- <x-alert style="color:red; border:1px solid green;" text="This is a message!" /> --}}
 
-    @php
-        $languages = ["PHP", "JavaScript", "Python", "C", "C++", "Dart"];
+    {{-- @php
+    $languages = ["PHP", "JavaScript", "Python", "C", "C++", "Dart"];
     @endphp
 
     @foreach ($languages as $language)
-        <x-alert :text="$language" />
-    @endforeach
+    <x-alert :text="$language" />
+    @endforeach --}}
+
+    <x-button name="click_me" id="click_me" style="background: red; color: black;" />
+    <x-button style="color: White;" />
 
 </body>
 

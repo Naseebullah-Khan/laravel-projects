@@ -1,3 +1,1 @@
-<div>
-    <!-- Well begun is half done. - Aristotle -->
-</div>
+<button {{ $attributes->merge(["style" => "padding: 20px; border: 1px solid green;"]) }}>Click Me</button>
