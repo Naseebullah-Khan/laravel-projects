@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\view\View;
+use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
     return view('welcome');
@@ -86,5 +87,15 @@ Route::get("blade-component", function (): View {
     return view("blade-component");
 });
 
+Route::get("/session", function (Request $request): View {
+    // Storing data in session
+    // $request->session()->put("foo", "bar");
+    // $request->session()->put("foo", "This is a session value");
+    // $request->session()->put("foo", ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]);
+    // request()->session()->put("lan", ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]);
+    // session(["language" => ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]]);
+    Session::put("facade", ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]);
+    return view("session");
+});
 
 require __DIR__ . '/auth.php';
