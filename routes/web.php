@@ -94,7 +94,17 @@ Route::get("/session", function (Request $request): View {
     // $request->session()->put("foo", ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]);
     // request()->session()->put("lan", ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]);
     // session(["language" => ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]]);
-    Session::put("facade", ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]);
+    // Session::put("facade", ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]);
+
+    // Retrive data from session
+    // $value = $request->session()->get("facade", "Default Value");
+    // $value = $request->session()->get("facade1", "Default Value");
+    // $value = session("facade", "Default Value");
+    // $value = session("facade1", "Default Value");
+    // $value = Session::get("facade", "Default Value");
+    $value = Session::get("facade1", "Default Value");
+
+    dd($value);
     return view("session");
 });
 
