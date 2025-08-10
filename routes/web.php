@@ -96,15 +96,23 @@ Route::get("/session", function (Request $request): View {
     // session(["language" => ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]]);
     // Session::put("facade", ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]);
 
-    // Retrive data from session
+    // Retrieve data from session
     // $value = $request->session()->get("facade", "Default Value");
     // $value = $request->session()->get("facade1", "Default Value");
     // $value = session("facade", "Default Value");
     // $value = session("facade1", "Default Value");
     // $value = Session::get("facade", "Default Value");
-    $value = Session::get("facade1", "Default Value");
+    // $value = Session::get("facade1", "Default Value");
 
-    dd($value);
+    // Delete data from session
+    // $request->session()->forget("foo");
+    // request()->session()->forget("facade");
+    // session()->forget("lan");
+    // Session::forget("language");
+    // session()->forget(["foo", "facade", "lan", "language"]); // This will delete multiple keys in the session
+    session()->flush(); // This will delete all data from the session
+
+
     return view("session");
 });
 
