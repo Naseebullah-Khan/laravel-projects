@@ -123,9 +123,18 @@ Route::get("cache", function () {
     // $value = Cache::get("foo");
     // dd($value);
 
-    $users = Cache::rememberForever("users", function () {
-        return User::all();
-    });
+    // $users = Cache::rememberForever("users", function () {
+    //     return User::all();
+    // });
+
+    // $users = Cache::pull("users", []); // This will remove the users from the cache and return the value
+
+    $users = [];
+    // Cache::forget("users"); // This will delete the users from the cache
+
+    // if (Cache::has("users")) {
+    //     dd("Users are already cached");
+    // }
 
     // Change Cache Driver to file or database in .env file
     return view("cache", compact("users"));
