@@ -4,6 +4,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResponseController;
 use App\Mail\SendMail;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -119,9 +120,15 @@ Route::get("/session", function (Request $request): View {
 
 Route::get("cache", function () {
     // Cache::put("foo", "bar", 60);
-    $value = Cache::get("foo");
-    dd($value);
-    return view("cache");
+    // $value = Cache::get("foo");
+    // dd($value);
+
+    $users = Cache::rememberForever("users", function () {
+        return User::all();
+    });
+
+    // Change Cache Driver to file or database in .env file
+    return view("cache", compact("users"));
 });
 
 require __DIR__ . '/auth.php';

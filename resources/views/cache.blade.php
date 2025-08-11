@@ -10,6 +10,10 @@
 
 <body>
     <h1>Cache Page</h1>
+
+    @foreach ($users as $user)
+        <p>{{ $user->name }}</p>
+    @endforeach
 </body>
 
 </html>
