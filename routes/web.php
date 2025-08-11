@@ -6,6 +6,7 @@ use App\Http\Controllers\ResponseController;
 use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\view\View;
@@ -114,6 +115,13 @@ Route::get("/session", function (Request $request): View {
 
 
     return view("session");
+});
+
+Route::get("cache", function () {
+    // Cache::put("foo", "bar", 60);
+    $value = Cache::get("foo");
+    dd($value);
+    return view("cache");
 });
 
 require __DIR__ . '/auth.php';
