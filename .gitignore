@@ -1,3 +1,7 @@
+*.log
+.DS_Store
+
+
 /.phpunit.cache
 /node_modules
 /public/build
@@ -13,11 +17,10 @@
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
-npm-debug.log
-yarn-error.log
 /auth.json
 /.fleet
 /.idea
 /.nova
+Thumbs.db
 /.vscode
 /.zed

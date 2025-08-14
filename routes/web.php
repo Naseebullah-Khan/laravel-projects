@@ -1,17 +1,7 @@
 <?php
 
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ResponseController;
-use App\Mail\SendMail;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use Illuminate\view\View;
-use Illuminate\Support\Facades\Session;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,123 +11,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get("/user/dashboard", function () {
-    # There is two ways to get the authenticated user
-    # 1. Using the auth() helper function:- we use this mostly in blade files. you can also use this in other places as well.
-    # 2. Using the auth facade:- we use this mostly in controllers. you can also use this in blade files as well.
-    // if (Auth::check()) {
-    //     $user = Auth::user();
-    //     dd($user->name);
-    // } else {
-    //     dd("User is not authenticated");
-    // }
-    return view("user.dashboard");
-})->name("user.dashboard")->middleware(("auth"));
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Post Route
-Route::resource("/post", PostController::class)->middleware("auth");
-
-// Route::get("/response-one", function () {
-//     // return redirect("response-two");
-//     // return redirect()->route("response.two");
-//     return to_route("response.two", ["name" => "Naseebullah Khan Hoshmand"]);
-// })->name("response.one");
-
-// // Route::get("/response-two/{name}", function ($name) {
-// Route::get("/response-two", function () {
-//     // dd($name);
-//     // dd(request()); // if you have parameter in path then you don't have access to that parameter in request method
-//     dd(request()->query()["name"]);
-//     return "Response Two";
-// })->name("response.two");
-
-Route::get("/response", [ResponseController::class, "index"]);
-Route::get("/response/create", [ResponseController::class, "create"]);
-
-Route::get("/send-email", function (): View {
-    return view("send-email");
-});
-
-Route::post("/send-email", function (Request $request): never {
-    // Mail::raw($request->message, function ($mail) use ($request): void {
-    //     $mail
-    //         ->to($request->email)
-    //         ->subject("Test Email from Laravel")
-    //         ->from("nk@gmail.com");
-    // });
-    // dd("Email sent successfully!");
-
-    // Recommended way to send email
-
-    $mailContent = [
-        "to" => $request->email,
-        "message" => $request->message,
-        "subject" => "test email from laravel",
-        "from" => "nk@laravel.com",
-    ];
-    Mail::to($mailContent["to"])->queue(mailable: new SendMail($mailContent));
-    dd("Email sent successfully!");
-})->name("send.email");
-
-Route::get("blade-component", function (): View {
-    return view("blade-component");
-});
-
-Route::get("/session", function (Request $request): View {
-    // Storing data in session
-    // $request->session()->put("foo", "bar");
-    // $request->session()->put("foo", "This is a session value");
-    // $request->session()->put("foo", ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]);
-    // request()->session()->put("lan", ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]);
-    // session(["language" => ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]]);
-    // Session::put("facade", ["PHP", "Laravel", "VueJS", "ReactJS", "AngularJS", "NodeJS"]);
-
-    // Retrieve data from session
-    // $value = $request->session()->get("facade", "Default Value");
-    // $value = $request->session()->get("facade1", "Default Value");
-    // $value = session("facade", "Default Value");
-    // $value = session("facade1", "Default Value");
-    // $value = Session::get("facade", "Default Value");
-    // $value = Session::get("facade1", "Default Value");
-
-    // Delete data from session
-    // $request->session()->forget("foo");
-    // request()->session()->forget("facade");
-    // session()->forget("lan");
-    // Session::forget("language");
-    // session()->forget(["foo", "facade", "lan", "language"]); // This will delete multiple keys in the session
-    session()->flush(); // This will delete all data from the session
-
-
-    return view("session");
-});
-
-Route::get("cache", function () {
-    // Cache::put("foo", "bar", 60);
-    // $value = Cache::get("foo");
-    // dd($value);
-
-    // $users = Cache::rememberForever("users", function () {
-    //     return User::all();
-    // });
-
-    // $users = Cache::pull("users", []); // This will remove the users from the cache and return the value
-
-    $users = [];
-    // Cache::forget("users"); // This will delete the users from the cache
-
-    // if (Cache::has("users")) {
-    //     dd("Users are already cached");
-    // }
-
-    // Change Cache Driver to file or database in .env file
-    return view("cache", compact("users"));
-});
-
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

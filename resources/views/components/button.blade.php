@@ -1,1 +1,0 @@
-<button {{ $attributes->merge(["style" => "padding: 20px; border: 1px solid green;"]) }}>{{ $slot }}</button>
