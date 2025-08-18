@@ -23,6 +23,7 @@
                     <div class="form-group">
                         <x-input-label for="colors" value="Colors" />
                         <x-select-input name="colors">
+                            <option value="">Select Color</option>
                             <option value="red">Red</option>
                             <option value="blue">Blue</option>
                             <option value="green">Green</option>
