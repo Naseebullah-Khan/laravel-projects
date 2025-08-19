@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string("short_description");
             $table->integer('quantity')->default(0);
             $table->string("sku");
-            $table->text("description")->default("no information");
+            $table->text("description")->nullable();
             $table->timestamps();
         });
     }
