@@ -2,22 +2,25 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Product;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/', function (): View {
     return view('pages.home');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
+Route::get('/dashboard', function (): View {
+    $products = Product::all();
+    return view('admin.dashboard', compact('products'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function (): void {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource("products", ProductController::class);
+Route::resource("products", controller: ProductController::class);
 
 require __DIR__ . '/auth.php';

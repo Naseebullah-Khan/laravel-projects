@@ -15,9 +15,10 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        //
+        $products = Product::all();
+        return view("admin.dashboard", compact("products"));
     }
 
     /**
