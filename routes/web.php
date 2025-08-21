@@ -10,10 +10,8 @@ Route::get('/', function (): View {
     return view('pages.home');
 });
 
-Route::get('/dashboard', function (): View {
-    $products = Product::all();
-    return view('admin.dashboard', compact('products'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [ProductController::class, "index"])
+    ->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function (): void {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
