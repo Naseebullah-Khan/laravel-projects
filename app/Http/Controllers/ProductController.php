@@ -150,8 +150,23 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        //
+        $product = Product::findOrFail($id);
+        // Delete thumbnail image
+        File::delete(public_path($product->image));
+
+        // Delete other images
+        if ($product->images) {
+            // Delete each image file
+            foreach ($product->images as $image) {
+                File::delete(public_path($image->path));
+            }
+        }
+
+        // Finally delete the product
+        $product->delete();
+
+        return redirect()->route("products.index");
     }
 }

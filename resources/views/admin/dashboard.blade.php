@@ -30,10 +30,14 @@
                                     <td>{{ $product->name }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->quantity }}</td>
-                                    <td>
+                                    <td class="d-flex gap-2">
                                         <a href="{{ route("products.edit", $product->id) }}"
                                             class="btn btn-primary">Edit</a>
-                                        <a href="" class="btn btn-danger">Delete</a>
+                                        <form action="{{ route("products.destroy", $product->id) }}" method="post">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
                                     </td>
                                 </tr>
 
