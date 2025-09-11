@@ -110,6 +110,9 @@
                             return validation();
                         },
                         success: function (data) {
+                            if (data.status === "success") {
+                                $(".cart-count").text(data.cartCount);
+                            }
                             console.log(data);
                         },
                         error: function (xhr, status, error) { },

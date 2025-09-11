@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AddToCartController;
+use App\Http\Controllers\CartPageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductPageController;
 use App\Http\Controllers\ProfileController;
@@ -23,5 +24,6 @@ Route::middleware('auth')->group(function (): void {
 Route::resource("products", controller: ProductController::class);
 
 Route::post("/add-to-cart/{id}", [AddToCartController::class, "store"])->name("add-to-cart");
+Route::get("/cart", [CartPageController::class, "index"])->name("cart.index");
 
 require __DIR__ . '/auth.php';

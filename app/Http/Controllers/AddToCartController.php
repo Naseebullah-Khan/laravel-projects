@@ -33,7 +33,7 @@ class AddToCartController extends Controller
         return [
             "status" => "success",
             "message" => "Product added to cart successfully.",
-            "cart_count" => 0
+            "cartCount" => count($this->cart),
         ];
 
     }
