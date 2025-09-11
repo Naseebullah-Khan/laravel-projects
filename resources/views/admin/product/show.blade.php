@@ -46,8 +46,8 @@
                         <p>{{ $product->short_description }}</p>
 
                         <h6 class="mt_30">Color</h6>
-                        <select class="select_2" name="state">
-                            <option value="AL">Select Color</option>
+                        <select class="select_2 color" name="state">
+                            <option value="">Select Color</option>
                             @foreach ($product->colors as $color)
                                 <option value="{{ $color->name }}">{{ $color->name }}</option>
                             @endforeach
@@ -56,14 +56,12 @@
 
                         <div class="wsus__product_add_cart">
                             <div class="wsus__product_quantity">
-                                <button class="minus" type="submit"><i class="far fa-minus"></i></button>
-                                <input type="text" placeholder="01">
-                                <button class="plus" type="submit"><i class="far fa-plus"></i></button>
+                                <button class="minus decrement" type="submit"><i class="far fa-minus"></i></button>
+                                <input class="quantity" type="text" value="1">
+                                <button class="plus increment" type="submit"><i class="far fa-plus"></i></button>
                             </div>
                             <div class="wsus__buy_cart_button">
-                                <a href="#" class="cart"><img src="{{ asset("assets/images/cart_icon_black.svg") }}"
-                                        alt="cart" class="img-fluid w-100"></a>
-                                <a href="cart.html" class="common_btn">Buy Now</a>
+                                <a href="" class="common_btn add_to_cart" data-id="{{ $product->id }}">Add to Cart</a>
                             </div>
                         </div>
                         <ul class="wishlist d-flex flex-wrap">
@@ -89,4 +87,61 @@
             </div>
         </div>
     </section>
+
+    <x-slot name="scripts">
+        <script>
+            $(document).ready(function () {
+
+                $(".add_to_cart").on("click", function (e) {
+                    e.preventDefault();
+                    let id = $(this).data("id")
+                    let color = $(".color").val();
+                    let quantity = $(".quantity").val();
+
+                    $.ajax({
+                        method: "POST",
+                        url: "{{ route('add-to-cart', ['id' => 'ID_PLACEHOLDER']) }}".replace("ID_PLACEHOLDER", id),
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            color: color,
+                            quantity: quantity,
+                        },
+                        beforeSend: function () {
+                            return validation();
+                        },
+                        success: function (data) {
+                            console.log(data);
+                        },
+                        error: function (xhr, status, error) { },
+                    })
+
+                    // Validate color function
+                    function validation() {
+                        if (!color) {
+                            console.log("Color is required!")
+                            return false;
+                        }
+                        return true;
+                    }
+
+                })
+                // Increase quantity function
+                $(".increment").on("click", function () {
+                    let quantity = $(".quantity").val();
+                    let newQuantity = parseInt(quantity) + 1;
+                    $(".quantity").val(newQuantity);
+                })
+
+                // Decrease quantity function
+                $(".decrement").on("click", function () {
+                    let quantity = $(".quantity").val();
+                    if (quantity > 1) {
+                        let newQuantity = parseInt(quantity) - 1;
+                        $(".quantity").val(newQuantity);
+                    }
+                })
+            })
+
+        </script>
+    </x-slot>
 </x-app-layout>
