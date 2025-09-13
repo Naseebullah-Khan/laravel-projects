@@ -35,6 +35,12 @@ class AddToCartController extends Controller
             "message" => "Product added to cart successfully.",
             "cartCount" => count($this->cart),
         ];
+    }
 
+    public function destroy($id)
+    {
+        unset($this->cart[$id]);
+        Session::put("cart", $this->cart);
+        return redirect()->back();
     }
 }
