@@ -72,10 +72,7 @@
                         <div class="row justify-content-between">
                             <div class="col-md-6 col-xl-5 ms-auto">
                                 <div class="wsus__cart_list_pricing">
-                                    <h6>Total <span>$ 360.00</span></h6>
-                                    <p>Tax<span>12%</span></p>
-                                    <p>Discount<span>$ 60.00</span></p>
-                                    <h5>Sub total<span>$ 300.00</span></h5>
+                                    <h6>Total <span>$ {{ $totalPrice }}</span></h6>
                                 </div>
                             </div>
                         </div>
@@ -101,16 +98,16 @@
                 // Increase quantity function
                 $(".increment").on("click", function () {
                     let id = $(this).data("id");
-                    let input = $(this).siblings(".quantity"); // only get the quantity next to this button
-                    let quantity = parseInt(input.val());
-                    input.val(quantity + 1);
+                    let quantity = $(this).siblings(".quantity").val(); // only get the quantity next to this button
+                    quantity = parseInt(quantity) + 1;
+                    $(this).siblings(".quantity").val(quantity);
                     $.ajax({
                         method: "POST",
                         url: "{{ route('update-quantity') }}",
                         data: {
                             _token: "{{ csrf_token() }}",
                             id: id,
-                            quantity: quantity + 1,
+                            quantity: quantity,
                         },
                         success: function (data) {
                             if (data["status"] == "success") {
@@ -124,17 +121,17 @@
                 // Decrease quantity function
                 $(".decrement").on("click", function () {
                     let id = $(this).data("id");
-                    let input = $(this).siblings(".quantity");
-                    let quantity = parseInt(input.val());
+                    let quantity = $(this).siblings(".quantity").val();
                     if (quantity > 1) {
-                        input.val(quantity - 1);
+                        quantity = parseInt(quantity) - 1;
+                        $(this).siblings(".quantity").val(quantity);
                         $.ajax({
                             method: "POST",
                             url: "{{ route('update-quantity') }}",
                             data: {
                                 _token: "{{ csrf_token() }}",
                                 id: id,
-                                quantity: quantity - 1,
+                                quantity: quantity,
                             },
                             success: function (data) {
                                 if (data["status"] == "success") {
