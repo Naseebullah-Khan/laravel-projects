@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -37,10 +38,20 @@ class AddToCartController extends Controller
         ];
     }
 
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         unset($this->cart[$id]);
         Session::put("cart", $this->cart);
         return redirect()->back();
+    }
+
+    public function updateQuantity(Request $request): array
+    {
+        $cart_items = $this->cart;
+        $cart_items[$request->id]["quantity"] = $request->quantity;
+        Session::put("cart", $cart_items);
+        return [
+            "status" => "success",
+        ];
     }
 }

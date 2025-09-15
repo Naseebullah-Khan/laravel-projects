@@ -34,9 +34,14 @@
 
                                             <td class="pro_select">
                                                 <div class="quentity_btn">
-                                                    <button class="btn btn-danger"><i class="fal fa-minus"></i></button>
-                                                    <input type="text" value="{{ $cart_item['quantity'] }}">
-                                                    <button class="btn btn-success"><i class="fal fa-plus"></i></button>
+                                                    <button class="btn btn-danger decrement"
+                                                        data-id="{{ $cart_item['id'] }}"><i
+                                                            class="fal fa-minus"></i></button>
+                                                    <input class="quantity" type="text" placeholder="1"
+                                                        value="{{ $cart_item['quantity'] }}" min="1">
+                                                    <button class="btn btn-success increment"
+                                                        data-id="{{ $cart_item['id'] }}"><i
+                                                            class="fal fa-plus"></i></button>
                                                 </div>
                                             </td>
 
@@ -90,11 +95,57 @@
         </div>
     </section>
 
-    <x-slot name="script">
+    <x-slot name="scripts">
         <script>
             $(document).ready(function () {
+                // Increase quantity function
+                $(".increment").on("click", function () {
+                    let id = $(this).data("id");
+                    let input = $(this).siblings(".quantity"); // only get the quantity next to this button
+                    let quantity = parseInt(input.val());
+                    input.val(quantity + 1);
+                    $.ajax({
+                        method: "POST",
+                        url: "{{ route('update-quantity') }}",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            id: id,
+                            quantity: quantity + 1,
+                        },
+                        success: function (data) {
+                            if (data["status"] == "success") {
+                                window.location.reload()
+                            }
+                        },
+                        error: function (xhr, status, error) { }
+                    })
+                });
 
-            })
+                // Decrease quantity function
+                $(".decrement").on("click", function () {
+                    let id = $(this).data("id");
+                    let input = $(this).siblings(".quantity");
+                    let quantity = parseInt(input.val());
+                    if (quantity > 1) {
+                        input.val(quantity - 1);
+                        $.ajax({
+                            method: "POST",
+                            url: "{{ route('update-quantity') }}",
+                            data: {
+                                _token: "{{ csrf_token() }}",
+                                id: id,
+                                quantity: quantity - 1,
+                            },
+                            success: function (data) {
+                                if (data["status"] == "success") {
+                                    window.location.reload()
+                                }
+                            },
+                            error: function (xhr, status, error) { }
+                        })
+                    }
+                });
+            });
         </script>
     </x-slot>
 </x-app-layout>
