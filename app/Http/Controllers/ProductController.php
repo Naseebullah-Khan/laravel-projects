@@ -9,7 +9,6 @@ use App\Models\ProductColor;
 use App\Models\ProductImage;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
@@ -71,6 +70,8 @@ class ProductController extends Controller
                 ]);
             }
         }
+
+        notyf()->success('Product Created Successfully.');
 
         return redirect()->route("products.index");
     }
@@ -145,6 +146,8 @@ class ProductController extends Controller
             }
         }
 
+        notyf()->success('Product Updated Successfully.');
+
         return redirect()->route("products.index");
     }
 
@@ -167,6 +170,8 @@ class ProductController extends Controller
 
         // Finally delete the product
         $product->delete();
+
+        notyf()->success('Product Deleted Successfully.');
 
         return redirect()->route("products.index");
     }

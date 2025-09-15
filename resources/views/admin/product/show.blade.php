@@ -49,7 +49,7 @@
                         <select class="select_2 color" name="state">
                             <option value="">Select Color</option>
                             @foreach ($product->colors as $color)
-                                <option value="{{ $color->name }}">{{ $color->name }}</option>
+                                <option value="{{ $color->name }}">{{ ucfirst($color->name) }}</option>
                             @endforeach
                         </select>
 
@@ -112,6 +112,7 @@
                         success: function (data) {
                             if (data.status === "success") {
                                 $(".cart-count").text(data.cartCount);
+                                notyf.success('Product is added to cart.');
                             }
                             console.log(data);
                         },
@@ -121,7 +122,7 @@
                     // Validate color function
                     function validation() {
                         if (!color) {
-                            console.log("Color is required!")
+                            notyf.error("Color is required!")
                             return false;
                         }
                         return true;

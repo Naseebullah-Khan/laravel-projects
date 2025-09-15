@@ -34,6 +34,8 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
+        notyf()->success('Profile Updated Successfully.');
+
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
@@ -54,6 +56,8 @@ class ProfileController extends Controller
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
+        notyf()->success('Profile Deleted Successfully.');
 
         return Redirect::to('/');
     }
