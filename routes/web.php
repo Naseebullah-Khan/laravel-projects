@@ -1,15 +1,10 @@
 <?php
 
-use App\Jobs\SendWelcomeEmail;
-use App\Models\User;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get("/send", function () {
-    $user = User::findOrFail(1);
-    dispatch(new SendWelcomeEmail($user));
-    dd('Email sent successfully!');
-});
+Route::resource("posts", PostController::class);
