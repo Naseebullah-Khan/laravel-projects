@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\PostController;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/', function (): View {
     return view('welcome');
 });
 
-Route::resource("posts", PostController::class);
+Route::get("messages", function (): View {
+    return view("messages");
+});
