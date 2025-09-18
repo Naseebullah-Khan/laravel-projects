@@ -10,7 +10,11 @@
 </head>
 
 <body>
-    <h1>Messages</h1>
+    <form action="{{ route("send-message") }}" method="get">
+        <label for="message">Message</label>
+        <input type="text" name="message" id="message">
+        <input type="submit" value="Send">
+    </form>
 </body>
 
 </html>
