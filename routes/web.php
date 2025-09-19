@@ -26,7 +26,8 @@ Route::get("/messages", function (): View {
 
 Route::get("/send-message", function (): RedirectResponse {
     $message = request()->get("message");
-    event(new NewMessage($message));
+    $user_id = request()->get("user_id");
+    event(new NewMessage($message, $user_id));
     return redirect("/messages");
 })->name("send-message");
 

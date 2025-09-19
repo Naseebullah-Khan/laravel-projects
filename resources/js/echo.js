@@ -9,8 +9,11 @@ window.Echo = new Echo({
     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
     forceTLS: true,
 });
+let user_id = document
+    .querySelector("meta[name='user_id']")
+    .getAttribute("content");
 
-window.Echo.private("chat").listen("NewMessage", (e) => {
+window.Echo.private("chat." + user_id).listen("NewMessage", (e) => {
     console.log(e);
     document.getElementById("messages").innerHTML += `<p>${e.message}</p>`;
 });
