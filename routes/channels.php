@@ -9,3 +9,7 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id): bool {
 Broadcast::channel("chat.{id}", function ($user, $id): bool {
     return $user->id == $id;
 });
+
+Broadcast::channel("online", function ($user): mixed {
+    return $user->toArray();
+});
