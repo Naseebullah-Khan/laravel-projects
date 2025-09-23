@@ -2,6 +2,12 @@
     <div id="frame">
         @include("layouts.sidebar")
         <div class="content">
+            <div class="loader d-none">
+                <div class="loader-inner">
+                    <l-square size="35" stroke="5" stroke-length="0.25" bg-opacity="0.1" speed="1.2"
+                        color="black"></l-square>
+                </div>
+            </div>
             <div class="contact-profile">
                 <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
                 <p>Harvey Specter</p>
@@ -58,6 +64,7 @@
 
 
     <x-slot name="scripts">
+        <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/square.js"></script>
         @vite("resources/js/app.js")
     </x-slot>
 </x-app-layout>
