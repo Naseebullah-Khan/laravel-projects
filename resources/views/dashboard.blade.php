@@ -2,6 +2,11 @@
     <div id="frame">
         @include("layouts.sidebar")
         <div class="content">
+            <div class="blank-wrap">
+                <div class="inner-blank-wrap">
+                    Select a contact to start a conversation
+                </div>
+            </div>
             <div class="loader d-none">
                 <div class="loader-inner">
                     <l-square size="35" stroke="5" stroke-length="0.25" bg-opacity="0.1" speed="1.2"
@@ -9,55 +14,26 @@
                 </div>
             </div>
             <div class="contact-profile">
-                <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                <p>Harvey Specter</p>
+                <img src="{{ asset("default-images/avatar.png") }}" alt="default-image" />
+                <p class="contact-name"></p>
                 <div class="social-media">
 
                 </div>
             </div>
             <div class="messages">
                 <ul>
-                    <li class="sent">
-                        <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                        <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!
-                        </p>
-                    </li>
-                    <li class="replies">
-                        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                        <p>When you're backed against the wall, break the god damn thing down.</p>
-                    </li>
-                    <li class="replies">
-                        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                        <p>Excuses don't win championships.</p>
-                    </li>
-                    <li class="sent">
-                        <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                        <p>Oh yeah, did Michael Jordan tell you that?</p>
-                    </li>
-                    <li class="replies">
-                        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                        <p>No, I told him that.</p>
-                    </li>
-                    <li class="replies">
-                        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                        <p>What are your choices when someone puts a gun to your head?</p>
-                    </li>
-                    <li class="sent">
-                        <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                        <p>What are you talking about? You do what they say or they shoot you.</p>
-                    </li>
-                    <li class="replies">
-                        <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                        <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do
-                            any one of a hundred and forty six other things.</p>
-                    </li>
+
                 </ul>
             </div>
             <div class="message-input">
-                <div class="wrap">
-                    <input type="text" placeholder="Write your message..." />
-                    <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                </div>
+                <form method="post" class="form-message">
+                    @csrf
+                    <div class="wrap">
+                        <input type="text" class="text" placeholder="Write your message..." name="text" />
+                        <button type="submit" class="submit"><i class="fa fa-paper-plane"
+                                aria-hidden="true"></i></button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -65,6 +41,6 @@
 
     <x-slot name="scripts">
         <script type="module" src="https://cdn.jsdelivr.net/npm/ldrs/dist/auto/square.js"></script>
-        @vite("resources/js/app.js")
+        @vite(["resources/js/app.js", "resources/js/message.js"])
     </x-slot>
 </x-app-layout>
