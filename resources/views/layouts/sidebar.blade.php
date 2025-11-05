@@ -30,7 +30,7 @@
             @forelse ($users as $user)
                 <li class="contact" data-selected_user_id="{{ $user->id }}">
                     <div class="wrap">
-                        <span class="contact-status online"></span>
+                        <span class="contact-status offline"></span>
                         <img src="{{ asset("default-images/avatar.png") }}" alt="{{ $user->name }}" />
                         <div class="meta">
                             <p class="name">{{ $user->name }}</p>
