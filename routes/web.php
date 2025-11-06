@@ -10,5 +10,6 @@ Route::get('/', function () {
 Route::resource("test", SampleController::class);
 
 Route::get("service-container", function () {
-    dd(app()->make("first_class"));
+    // dd(app()->make("first_class"));
+    dd(app()->make("test_service"));
 });
