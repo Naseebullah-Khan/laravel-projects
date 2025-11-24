@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Services\NotificationService;
+use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
 class NotificationProvider extends ServiceProvider
@@ -12,7 +13,11 @@ class NotificationProvider extends ServiceProvider
      */
     public function register(): void
     {
-        app()->singleton(NotificationService::class, function () {
+        // app()->singleton(NotificationService::class, function () {
+        //     return new NotificationService();
+        // });
+
+        $this->app->singleton(NotificationService::class, function () {
             return new NotificationService();
         });
     }
@@ -22,6 +27,6 @@ class NotificationProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->app->alias(NotificationService::class, "Notification");
     }
 }
