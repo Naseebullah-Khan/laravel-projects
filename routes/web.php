@@ -1,6 +1,7 @@
 <?php
 
 use App\Facades\Notification;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SampleController;
 use App\Services\NotificationService;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,5 @@ Route::get("service-container", function () {
     $notification = Notification::send("Hello, World!", "test@gmail.com");
     dd($notification);
 });
+
+Route::resource("products", ProductController::class);
