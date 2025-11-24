@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\ImageUpload;
 use Illuminate\Http\Request;
 
 class SampleController extends Controller
 {
+    use ImageUpload;
     public $request;
     public function __construct(Request $request)
     {
@@ -16,7 +18,8 @@ class SampleController extends Controller
      */
     public function index()
     {
-        return [1, 2, 3, 4, 5, $this->request->id];
+        $this->handleZipFile();
+        // return [1, 2, 3, 4, 5, $this->request->id];
     }
 
     /**
