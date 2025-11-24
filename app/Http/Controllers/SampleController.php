@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class SampleController extends Controller
 {
-    use ImageUpload;
+    // use ImageUpload;
     public $request;
     public function __construct(Request $request)
     {
@@ -18,7 +18,8 @@ class SampleController extends Controller
      */
     public function index()
     {
-        $this->handleZipFile();
+        dd(makeSlug("Hello World!"));
+        // $this->handleZipFile();
         // return [1, 2, 3, 4, 5, $this->request->id];
     }
 
