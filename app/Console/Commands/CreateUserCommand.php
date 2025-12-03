@@ -13,7 +13,7 @@ class CreateUserCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'user:create {name} {email} {password}';
+    protected $signature = 'user:create {--name=} {--email=} {--password=}';
 
     /**
      * The console command description.
@@ -27,9 +27,9 @@ class CreateUserCommand extends Command
      */
     public function handle()
     {
-        $userName = $this->argument('name');
-        $userEmail = $this->argument('email');
-        $userPassword = $this->argument('password');
+        $userName = $this->option('name') ?? "Admin";
+        $userEmail = $this->option('email') ?? "admin@hotmail.com";
+        $userPassword = $this->option('password') ?? "password";
         User::create([
             'name' => $userName,
             'email' => $userEmail,
