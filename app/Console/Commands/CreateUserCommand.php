@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
+use Pest\Support\Str;
 
 class CreateUserCommand extends Command
 {
@@ -25,6 +27,15 @@ class CreateUserCommand extends Command
      */
     public function handle()
     {
-        //
+        $userName = Str::random(8);
+        $userEmail = $userName . '@example.com';
+        $userPassword = "password";
+        User::create([
+            'name' => $userName,
+            'email' => $userEmail,
+            'password' => bcrypt($userPassword),
+        ]);
+
+        $this->info("User created: \nName: {$userName}\nEmail: {$userEmail}\nPassword: {$userPassword}");
     }
 }
