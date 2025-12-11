@@ -11,4 +11,5 @@ Route::get('/user', function (Request $request) {
 Route::prefix('v1')->group(function (): void {
     Route::get("/blogs", [BlogController::class, "index"]);
     Route::post("/blogs", [BlogController::class, "store"]);
+    Route::put("/blogs/{id}", [BlogController::class, "update"]);
 });

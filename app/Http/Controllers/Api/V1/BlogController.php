@@ -24,4 +24,14 @@ class BlogController extends Controller
         $post->save();
         return response()->json($post, 201);
     }
+
+    public function update(BlogStoreRequest $request, int $id): JsonResponse
+    {
+        $blog = Blog::findOrFail($id);
+        $blog->title = $request->title;
+        $blog->description = $request->description;
+        $blog->author_id = $request->author_id;
+        $blog->update();
+        return response()->json(["message" => "Blog updated successfully"], 200);
+    }
 }
