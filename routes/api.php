@@ -12,4 +12,5 @@ Route::prefix('v1')->group(function (): void {
     Route::get("/blogs", [BlogController::class, "index"]);
     Route::post("/blogs", [BlogController::class, "store"]);
     Route::put("/blogs/{id}", [BlogController::class, "update"]);
+    Route::get("/blogs/{id}", [BlogController::class, "show"]);
 });

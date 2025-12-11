@@ -25,6 +25,12 @@ class BlogController extends Controller
         return response()->json($post, 201);
     }
 
+    public function show(int $id): JsonResponse
+    {
+        $blog = Blog::findOrFail($id);
+        return response()->json($blog, 200);
+    }
+
     public function update(BlogStoreRequest $request, int $id): JsonResponse
     {
         $blog = Blog::findOrFail($id);
