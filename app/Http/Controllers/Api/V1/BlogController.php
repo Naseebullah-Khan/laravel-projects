@@ -10,52 +10,73 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index(): JsonResponse
     {
         $blogs = Blog::all();
-        return response()->json($blogs);
+
+        return response()->json($blogs, 200);
     }
+
+    /**
+     * Search for blogs by title.
+     */
 
     public function search(Request $request): JsonResponse
     {
         if ($request->has("q")) {
-            $blogs = Blog::where("title", "LIKE", "%" . $request["q"] . "%")->get();
+            $blogs = Blog::where("title", "LIKE", "%" . $request->q . "%")->get();
+
             return response()->json($blogs, 200);
         }
 
         return response()->json([], 200);
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(BlogStoreRequest $request): JsonResponse
     {
-        $post = new Blog();
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->author_id = $request->author_id;
-        $post->save();
-        return response()->json($post, 201);
+        $new_blog = new Blog();
+        $new_blog->title = $request->title;
+        $new_blog->description = $request->description;
+        $new_blog->author_id = $request->author_id;
+        $new_blog->save();
+
+        return response()->json($new_blog, 201);
     }
 
-    public function show(int $id): JsonResponse
+    /**
+     * Display the specified resource.
+     */
+    public function show(Blog $blog)
     {
-        $blog = Blog::findOrFail($id);
         return response()->json($blog, 200);
     }
 
-    public function update(BlogStoreRequest $request, int $id): JsonResponse
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(BlogStoreRequest $request, Blog $blog): JsonResponse
     {
-        $blog = Blog::findOrFail($id);
         $blog->title = $request->title;
         $blog->description = $request->description;
         $blog->author_id = $request->author_id;
         $blog->update();
-        return response()->json(["message" => "Blog updated successfully"], 200);
+
+        return response()->json(["message" => "Updated Successfully"], 200);
     }
 
-    public function destroy(int $id): JsonResponse
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Blog $blog): JsonResponse
     {
-        $blog = Blog::findOrFail($id);
         $blog->delete();
-        return response()->json(["message" => "Blog deleted successfully"], 200);
+
+        return response()->json(["message" => "Deleted Successfully"], 200);
     }
 }
