@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\BlogStoreRequest;
 use App\Models\Blog;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
@@ -13,6 +14,16 @@ class BlogController extends Controller
     {
         $blogs = Blog::all();
         return response()->json($blogs);
+    }
+
+    public function search(Request $request): JsonResponse
+    {
+        if ($request->has("q")) {
+            $blogs = Blog::where("title", "LIKE", "%" . $request["q"] . "%")->get();
+            return response()->json($blogs, 200);
+        }
+
+        return response()->json([], 200);
     }
 
     public function store(BlogStoreRequest $request): JsonResponse

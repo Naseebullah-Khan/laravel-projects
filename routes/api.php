@@ -11,6 +11,7 @@ Route::get('/user', function (Request $request) {
 Route::prefix('v1')->group(function (): void {
     Route::get("/blogs", [BlogController::class, "index"]);
     Route::post("/blogs", [BlogController::class, "store"]);
+    Route::get("/blogs/search", [BlogController::class, "search"]);
     Route::put("/blogs/{id}", [BlogController::class, "update"]);
     Route::get("/blogs/{id}", [BlogController::class, "show"]);
     Route::delete("/blogs/{id}", [BlogController::class, "destroy"]);
