@@ -59,9 +59,15 @@ class NoteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Note $note): RedirectResponse
     {
-        //
+        $note->update([
+            "user_id" => Auth::user()->id,
+            "title" => $request->title,
+            "content" => $request->content,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
