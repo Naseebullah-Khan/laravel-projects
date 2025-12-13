@@ -14,7 +14,8 @@ class NoteController extends Controller
      */
     public function index()
     {
-        //
+        $notes = Note::where("user_id", Auth::user()->id)->latest()->get();
+        return view("dashboard", compact("notes"));
     }
 
     /**
