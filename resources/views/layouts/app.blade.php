@@ -17,7 +17,7 @@
 
     @include("layouts.header")
 
-    <div class="content_area d-flex flex-wrap">
+    <div class="content_area d-flex">
         @include("layouts.sidebar")
         {{ $slot }}
     </div>
