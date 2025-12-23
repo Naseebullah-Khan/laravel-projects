@@ -15,7 +15,10 @@ class NoteController extends Controller
      */
     public function index()
     {
-        $notes = Note::where("user_id", Auth::user()->id)->latest()->get();
+        $notes = Note::where("user_id", Auth::user()->id)
+            ->where("archived", 0)
+            ->latest()
+            ->get();
         return view("dashboard", compact("notes"));
     }
 
@@ -32,6 +35,28 @@ class NoteController extends Controller
         ]);
 
         return response()->json(['status' => 'success', "data" => $note], 200);
+    }
+
+    public function archivedNotes()
+    {
+        $notes = Note::where("user_id", Auth::user()->id)
+            ->where("archived", 1)
+            ->latest()
+            ->get();
+        return view("archived", compact("notes"));
+    }
+
+    public function putArchived(Note $note): RedirectResponse
+    {
+        if ($note->user_id != Auth::user()->id) {
+            return redirect()->back();
+        }
+
+        $note->update([
+            "archived" => !$note->archived,
+        ]);
+
+        return redirect()->back();
     }
 
     /**
