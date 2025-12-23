@@ -54,10 +54,11 @@ textarea {
     padding: 12px 20px;
     outline: none;
     resize: none;
-    border: 1px solid #E4E7E9;
+    border: 1px solid #e4e7e9;
     border-radius: 3px;
     font-size: 16px;
     font-weight: 300;
+    background: transparent;
 }
 
 input::placeholder,
@@ -70,13 +71,13 @@ button {
 }
 
 :root {
-    --colorPrimary: #F7BE00;
-    --paraColor: #5A5A5A;
+    --colorPrimary: #f7be00;
+    --paraColor: #5a5a5a;
     --colorBlack: #121212;
     --colorWhite: #ffffff;
     --lightBg: #f0f0f0;
-    --paraFont: 'Roboto', sans-serif;
-    --headingFont: 'Source Sans Pro', sans-serif;
+    --paraFont: "Roboto", sans-serif;
+    --headingFont: "Source Sans Pro", sans-serif;
 }
 
 header {
@@ -139,11 +140,11 @@ header .header_right li .setting {
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
-    transition: all linear .3s;
-    -webkit-transition: all linear .3s;
-    -moz-transition: all linear .3s;
-    -ms-transition: all linear .3s;
-    -o-transition: all linear .3s;
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
 }
 
 header .header_right li .setting:hover {
@@ -169,16 +170,16 @@ header .header_right li .drop_menu {
     right: 0;
     margin-top: 14px;
     transform-origin: top;
-    transform: scaleY(.5);
-    -webkit-transform: scaleY(.5);
-    -moz-transform: scaleY(.5);
-    -ms-transform: scaleY(.5);
-    -o-transform: scaleY(.5);
-    transition: all linear .3s;
-    -webkit-transition: all linear .3s;
-    -moz-transition: all linear .3s;
-    -ms-transition: all linear .3s;
-    -o-transition: all linear .3s;
+    transform: scaleY(0.5);
+    -webkit-transform: scaleY(0.5);
+    -moz-transform: scaleY(0.5);
+    -ms-transform: scaleY(0.5);
+    -o-transform: scaleY(0.5);
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
     opacity: 0;
     visibility: hidden;
 }
@@ -201,11 +202,11 @@ header .header_right li .drop_menu li a {
     color: var(--colorBlack);
     padding: 5px 20px;
     width: 100%;
-    transition: all linear .3s;
-    -webkit-transition: all linear .3s;
-    -moz-transition: all linear .3s;
-    -ms-transition: all linear .3s;
-    -o-transition: all linear .3s;
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
 }
 
 header .header_right li .drop_menu li a:hover {
@@ -229,7 +230,7 @@ header .header_right li .drop_menu.show_setting {
 .sidebar {
     width: 15%;
     height: 90vh;
-    transition: all linear .15s;
+    transition: all linear 0.15s;
 }
 
 .sidebar ul li a {
@@ -239,15 +240,15 @@ header .header_right li .drop_menu.show_setting {
     font-weight: 400;
     text-transform: capitalize;
     color: var(--colorBlack);
-    transition: all linear .15s;
+    transition: all linear 0.15s;
     border-radius: 0px 50px 50px 0px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    -webkit-transition: all linear .15s;
-    -moz-transition: all linear .15s;
-    -ms-transition: all linear .15s;
-    -o-transition: all linear .15s;
+    -webkit-transition: all linear 0.15s;
+    -moz-transition: all linear 0.15s;
+    -ms-transition: all linear 0.15s;
+    -o-transition: all linear 0.15s;
 }
 
 .sidebar ul li a i {
@@ -263,7 +264,7 @@ header .header_right li .drop_menu.show_setting {
 }
 
 .sidebar ul li a span {
-    transition: all linear .15s;
+    transition: all linear 0.15s;
 }
 
 .hide_text .sidebar {
@@ -298,7 +299,7 @@ header .header_right li .drop_menu.show_setting {
 .main_content {
     width: 85%;
     padding: 0px 30px;
-    transition: all linear .15s;
+    transition: all linear 0.15s;
 }
 
 .search_area {
@@ -331,11 +332,11 @@ header .header_right li .drop_menu.show_setting {
     border-radius: 50%;
     color: var(--colorBlack);
     cursor: pointer;
-    transition: all linear .3s;
-    -webkit-transition: all linear .3s;
-    -moz-transition: all linear .3s;
-    -ms-transition: all linear .3s;
-    -o-transition: all linear .3s;
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
     z-index: 999;
 }
 
@@ -353,11 +354,11 @@ header .header_right li .drop_menu.show_setting {
     left: 0;
     opacity: 0;
     visibility: hidden;
-    transition: all linear .3s;
-    -webkit-transition: all linear .3s;
-    -moz-transition: all linear .3s;
-    -ms-transition: all linear .3s;
-    -o-transition: all linear .3s;
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
     z-index: 9999;
 }
 
@@ -373,16 +374,16 @@ header .header_right li .drop_menu.show_setting {
     margin: 100px auto;
     padding: 20px 20px 15px 20px;
     position: relative;
-    transform: scale(.8);
-    -webkit-transform: scale(.8);
-    -moz-transform: scale(.8);
-    -ms-transform: scale(.8);
-    -o-transform: scale(.8);
-    transition: all linear .3s;
-    -webkit-transition: all linear .3s;
-    -moz-transition: all linear .3s;
-    -ms-transition: all linear .3s;
-    -o-transition: all linear .3s;
+    transform: scale(0.8);
+    -webkit-transform: scale(0.8);
+    -moz-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    -o-transform: scale(0.8);
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
@@ -405,11 +406,11 @@ header .header_right li .drop_menu.show_setting {
     height: 35px;
     background: var(--colorWhite);
     cursor: pointer;
-    transition: all linear .3s;
-    -webkit-transition: all linear .3s;
-    -moz-transition: all linear .3s;
-    -ms-transition: all linear .3s;
-    -o-transition: all linear .3s;
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -469,11 +470,11 @@ header .header_right li .drop_menu.show_setting {
     line-height: 25px;
     border-radius: 50%;
     text-align: center;
-    transition: all linear .3s;
-    -webkit-transition: all linear .3s;
-    -moz-transition: all linear .3s;
-    -ms-transition: all linear .3s;
-    -o-transition: all linear .3s;
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
 }
 
 .ions_area ul li a:hover {
@@ -485,7 +486,7 @@ header .header_right li .drop_menu.show_setting {
     font-size: 16px;
     font-weight: 500;
     color: var(--colorBlack);
-    transition: all linear .3s;
+    transition: all linear 0.3s;
 }
 
 .ions_area .cancel_modal:hover {
@@ -505,16 +506,16 @@ header .header_right li .drop_menu.show_setting {
     overflow: hidden;
     padding: 6px 0px;
     transform-origin: top;
-    transform: scaleY(.5);
-    -webkit-transform: scaleY(.5);
-    -moz-transform: scaleY(.5);
-    -ms-transform: scaleY(.5);
-    -o-transform: scaleY(.5);
-    transition: all linear .3s;
-    -webkit-transition: all linear .3s;
-    -moz-transition: all linear .3s;
-    -ms-transition: all linear .3s;
-    -o-transition: all linear .3s;
+    transform: scaleY(0.5);
+    -webkit-transform: scaleY(0.5);
+    -moz-transform: scaleY(0.5);
+    -ms-transform: scaleY(0.5);
+    -o-transform: scaleY(0.5);
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
     opacity: 0;
     visibility: hidden;
     z-index: 9;
@@ -661,11 +662,11 @@ header .header_right li .drop_menu.show_setting {
     border-radius: 10px;
     margin-top: 25px;
     position: relative;
-    transition: all linear .3s;
-    -webkit-transition: all linear .3s;
-    -moz-transition: all linear .3s;
-    -ms-transition: all linear .3s;
-    -o-transition: all linear .3s;
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
 }
 
 .single_note_content {
@@ -680,11 +681,11 @@ header .header_right li .drop_menu.show_setting {
 .single_note .ions_area {
     padding: 0px 20px 20px 15px;
     opacity: 0;
-    transition: all linear .3s;
-    -webkit-transition: all linear .3s;
-    -moz-transition: all linear .3s;
-    -ms-transition: all linear .3s;
-    -o-transition: all linear .3s;
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
 }
 
 .single_note .single_note_check {
@@ -701,11 +702,11 @@ header .header_right li .drop_menu.show_setting {
     top: -5px;
     left: -5px;
     opacity: 0;
-    transition: all linear .3s;
-    -webkit-transition: all linear .3s;
-    -moz-transition: all linear .3s;
-    -ms-transition: all linear .3s;
-    -o-transition: all linear .3s;
+    transition: all linear 0.3s;
+    -webkit-transition: all linear 0.3s;
+    -moz-transition: all linear 0.3s;
+    -ms-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
 }
 
 .single_note.active,
@@ -766,7 +767,6 @@ header .header_right li .drop_menu.show_setting {
 }
 
 @media (min-width: 768px) and (max-width: 991.99px) {
-
     header .header_left .header_icon {
         display: none;
     }
@@ -820,7 +820,6 @@ header .header_right li .drop_menu.show_setting {
 }
 
 @media (min-width: 576px) and (max-width: 767.99px) {
-
     header .header_left .header_icon {
         display: none;
     }
@@ -875,11 +874,9 @@ header .header_right li .drop_menu.show_setting {
     .theme_area .theme_img {
         padding-top: 10px;
     }
-
 }
 
 @media (max-width: 575.99px) {
-
     header .header_left .header_icon {
         display: none;
     }
@@ -967,5 +964,4 @@ header .header_right li .drop_menu.show_setting {
     .theme_area .theme_img {
         padding-top: 10px;
     }
-
 }
