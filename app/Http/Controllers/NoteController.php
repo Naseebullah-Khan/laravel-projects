@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Note;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,20 @@ class NoteController extends Controller
     {
         $notes = Note::where("user_id", Auth::user()->id)->latest()->get();
         return view("dashboard", compact("notes"));
+    }
+
+    public function setAppearance(Request $request): JsonResponse
+    {
+        $note = Note::where("id", $request->note_id)
+            ->where("user_id", Auth::user()->id)
+            ->first();
+
+        $note->update([
+            "appearance_type" => $request->appearance_type,
+            "color_name" => $request->color_name,
+        ]);
+
+        return response()->json(['status' => 'success', "data" => $note], 200);
     }
 
     /**
