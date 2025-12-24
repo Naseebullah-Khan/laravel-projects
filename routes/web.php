@@ -8,10 +8,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware(['auth', "verified"])->group(function () {
     Route::get("/dashboard", [NoteController::class, "index"])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -20,6 +16,9 @@ Route::middleware(['auth', "verified"])->group(function () {
     Route::post("/note/setAppearance", [NoteController::class, "setAppearance"])->name("note.setAppearance");
     Route::get("notes/archived", [NoteController::class, "archivedNotes"])->name("notes.archived");
     Route::get("notes/put-archived/{note}", [NoteController::class, "putArchived"])->name("notes.put-archived");
+    Route::get("notes/bin", [NoteController::class, "showBinData"])->name("notes.showBinData");
+    Route::get("notes/{id}", [NoteController::class, "restore"])->name("notes.restore-note");
+    Route::delete("/notes/{id}", [NoteController::class, "forceDestroy"])->name("notes.forceDestroy");
     Route::resource("note", NoteController::class);
 });
 

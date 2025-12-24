@@ -38,16 +38,23 @@
                     <li>
                         <a href="{{ route("notes.put-archived", $note->id) }}"><i class="far fa-box-alt"></i></a>
                     </li>
-                    <li>
-                        <a class="modal_drop_list"><i class="far fa-ellipsis-v"></i></a>
-                        <ul class="drop_list">
-                            <li><a href="#">delete note</a></li>
-                            <li><a href="#">add label</a></li>
-                            <li><a href="#">add drawing</a></li>
-                            <li><a href="#">make a copy</a></li>
-                            <li><a href="#">vision history</a></li>
-                        </ul>
-                    </li>
+                    @php
+                        $routeName = $note->deleted_at ? 'notes.forceDestroy' : 'note.destroy';
+                    @endphp
+                    <form action="{{ route($routeName, $note->id) }}" method="POST" class="delete-form-{{ $note->id }}">
+                        @csrf
+                        @method("DELETE")
+                        <li>
+                            <a class="modal_drop_list"><i class="far fa-ellipsis-v"></i></a>
+                            <ul class="drop_list">
+                                <li><a href="javascript:;" onclick="$('.delete-form-{{ $note->id }}').submit();">delete
+                                        note</a></li>
+                                @if($note->deleted_at)
+                                    <li><a href="{{ route("notes.restore-note", $note->id) }}">restore note</a></li>
+                                @endif
+                            </ul>
+                        </li>
+                    </form>
                 </ul>
                 <!-- <a class="cancel_modal" href="#">cancel</a> -->
             </div>

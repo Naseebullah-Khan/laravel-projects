@@ -75,7 +75,7 @@ class NoteController extends Controller
         Note::create([
             "user_id" => Auth::user()->id,
             "title" => $request->title,
-            "content" => $request->content,
+            "content" => $request->input("content"),
         ]);
 
         return redirect()->back();
@@ -105,7 +105,7 @@ class NoteController extends Controller
         $note->update([
             "user_id" => Auth::user()->id,
             "title" => $request->title,
-            "content" => $request->content,
+            "content" => $request->input("content"),
         ]);
 
         return redirect()->back();
@@ -114,8 +114,43 @@ class NoteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Note $note): RedirectResponse
     {
-        //
+        if ($note->user_id != Auth::user()->id) {
+            return redirect()->back();
+        }
+        $note->delete();
+        return redirect()->back();
+    }
+
+    public function showBinData()
+    {
+        $notes = Note::where("user_id", Auth::user()->id)
+            ->onlyTrashed()
+            ->latest()
+            ->get();
+        return view("bin", compact("notes"));
+    }
+
+    public function forceDestroy(string $id): RedirectResponse
+    {
+        $note = Note::where("user_id", Auth::user()->id)
+            ->withTrashed()
+            ->findOrFail($id);
+
+        $note->forceDelete();
+
+        return redirect()->back();
+    }
+
+    public function restore(string $id): RedirectResponse
+    {
+        $note = Note::where("user_id", Auth::user()->id)
+            ->withTrashed()
+            ->findOrFail($id);
+
+        $note->restore();
+
+        return redirect()->back();
     }
 }
