@@ -13,9 +13,15 @@ class NoteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $notes = Note::where("user_id", Auth::user()->id)
+            ->when($request->search, function ($query) use ($request) {
+                $query->where(function ($q) use ($request) {
+                    $q->where("title", "like", "%" . $request->search . "%")
+                        ->orWhere("content", "like", "%" . $request->search . "%");
+                });
+            })
             ->where("archived", 0)
             ->latest()
             ->get();
@@ -37,9 +43,15 @@ class NoteController extends Controller
         return response()->json(['status' => 'success', "data" => $note], 200);
     }
 
-    public function archivedNotes()
+    public function archivedNotes(Request $request)
     {
         $notes = Note::where("user_id", Auth::user()->id)
+            ->when($request->search, function ($query) use ($request) {
+                $query->where(function ($q) use ($request) {
+                    $q->where("title", "like", "%" . $request->search . "%")
+                        ->orWhere("content", "like", "%" . $request->search . "%");
+                });
+            })
             ->where("archived", 1)
             ->latest()
             ->get();
@@ -60,14 +72,6 @@ class NoteController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request): RedirectResponse
@@ -79,22 +83,6 @@ class NoteController extends Controller
         ]);
 
         return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**
@@ -123,9 +111,15 @@ class NoteController extends Controller
         return redirect()->back();
     }
 
-    public function showBinData()
+    public function showBinData(Request $request)
     {
         $notes = Note::where("user_id", Auth::user()->id)
+            ->when($request->search, function ($query) use ($request) {
+                $query->where(function ($q) use ($request) {
+                    $q->where("title", "like", "%" . $request->search . "%")
+                        ->orWhere("content", "like", "%" . $request->search . "%");
+                });
+            })
             ->onlyTrashed()
             ->latest()
             ->get();

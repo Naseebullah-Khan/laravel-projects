@@ -1,9 +1,6 @@
 <x-app-layout>
     <div class="main_content">
-        <div class="search_area">
-            <input type="text" placeholder="Search...">
-            <i class="far fa-search"></i>
-        </div>
+        <x-note.search-input :route="route('notes.showBinData')" />
 
         <div class="row">
             <x-note.note-card :notes="$notes" />
