@@ -4,26 +4,16 @@
         <a href="#"><img src="{{ asset("assets/images/logo.jpg") }}" alt="logo" class="img-fluid"></a>
     </div>
     <ul class="header_right d-flex flex-wrap align-items-center">
-        <li class="setting_area">
-            <a class="setting"><i class="fal fa-cog"></i></a>
-            <ul class="drop_menu drop_menu_setting">
-                <li><a href="{{ route("profile.edit") }}">settings</a></li>
-                <li><a href="#">enable dark theme</a></li>
-                <li><a href="#">send feedback</a></li>
-                <li><a href="#">help</a></li>
-                <li><a href="#">app downloads</a></li>
-            </ul>
-        </li>
+        <form action="{{ route("logout") }}" method="POST" class="logout-form">
+            @csrf
+        </form>
         <li class="user_area">
             <div class="user">
-                <img src="{{ asset("assets/images/user_icon.png") }}" alt="user" class="img-fluid">
+                <img src="{{ asset("images/bg_1.jpg") }}" alt="user" class="img-fluid">
             </div>
             <ul class="drop_menu drop_menu_user">
-                <li><a href="#">settings</a></li>
-                <li><a href="#">enable dark theme</a></li>
-                <li><a href="#">send feedback</a></li>
-                <li><a href="#">help</a></li>
-                <li><a href="#">app downloads</a></li>
+                <li><a href="{{ route("profile.edit") }}">settings</a></li>
+                <li><a href="javascript:;" onclick="$('.logout-form').submit()">logout</a></li>
             </ul>
         </li>
     </ul>
